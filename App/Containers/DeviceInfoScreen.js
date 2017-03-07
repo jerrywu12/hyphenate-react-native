@@ -17,27 +17,27 @@ const HARDWARE_DATA = [
   {title: 'User Agent', info: DeviceInfo.getUserAgent()},
   {title: 'Screen Width', info: Metrics.screenWidth},
   {title: 'Screen Height', info: Metrics.screenHeight}
-]
+];
 
 const OS_DATA = [
   {title: 'Device System Name', info: DeviceInfo.getSystemName()},
   {title: 'Device ID', info: DeviceInfo.getDeviceId()},
   {title: 'Device Version', info: DeviceInfo.getSystemVersion()}
-]
+];
 
 const APP_DATA = [
   {title: 'Bundle Id', info: DeviceInfo.getBundleId()},
   {title: 'Build Number', info: DeviceInfo.getBuildNumber()},
   {title: 'App Version', info: DeviceInfo.getVersion()},
   {title: 'App Version (Readable)', info: DeviceInfo.getReadableVersion()}
-]
+];
 
 export default class DeviceInfoScreen extends React.Component {
   state: {
     isConnected: boolean,
     connectionInfo: Object | null,
     connectionInfoHistory: Array<any>
-  }
+  };
 
   constructor (props: Object) {
     super(props);

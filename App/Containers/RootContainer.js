@@ -40,6 +40,6 @@ class RootContainer extends Component {
 const mapStateToDispatch = (dispatch) => ({
   startup: () => dispatch(StartupActions.startup())
   // dispatch: dispatch
-})
+});
 
 export default connect(null, mapStateToDispatch)(RootContainer)

@@ -47,7 +47,7 @@ class GroupMembersScreen extends Component {
           <Image source={Images.default} resizeMode='cover' style={Styles.rowLogo}/>
           <View style={Styles.rowName}>
             <Text style={Styles.groupName}>{rowData}</Text>
-            {/* 群组成员数量，由于默认群组信息没有成员信息，所以此处暂不显示 */}
+            {/* number of group member. Not displaying due to no member info in to the group message data */}
             {/*<Text style={Styles.groupIntro}>{rowData}</Text>*/}
           </View>
         </View>

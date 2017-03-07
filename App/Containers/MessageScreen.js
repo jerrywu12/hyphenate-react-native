@@ -150,13 +150,13 @@ class MessageScreen extends React.Component {
   }
 
   handleChangeText(v) {
-    // 场景1：正常+ -
-    // 场景2：从中间位置+ - -> 如果删除一个字符后字符串匹配，则非中间位置
-    // 场景3：删除操作可以从textInput直接编辑，适应于以上情况
-    // 场景5：从emoji的删除按钮删除，则从末尾位置编辑
-    // 场景6：点击外部区域隐藏emoji框
-    const splitValue = this.state.value ? this.state.value.split('') : []
-    splitValue.pop()
+    // case 1: normal + and -
+    // case 2: the center location + and - -> no longer centered if a character is deleted from character string
+    // case 3: delete can be operated directly from textInput
+    // case 4: remove using emoji delete button, edit using bottom location
+    // case 5: hide emoji frame when outside area clicked
+    const splitValue = this.state.value ? this.state.value.split('') : [];
+    splitValue.pop();
     if (v == splitValue.join('')) {
       this.handleEmojiCancel()
     }
@@ -400,7 +400,7 @@ class MessageScreen extends React.Component {
   _renderTxt(txt) {
     const emoji = WebIM.emoji
 
-    // 替换不能直接用replace，必须以数组组合的方式，因为混合着dom元素
+    // Cannot replace directly using "replace", must use string concatenation due to mixture of DOM element
     let rnTxt = []
     let match = null
     const regex = /(\[.*?\])/g
@@ -420,19 +420,19 @@ class MessageScreen extends React.Component {
       }
       start = index + match[1].length
     }
-    rnTxt.push(txt.substring(start, txt.length))
+    rnTxt.push(txt.substring(start, txt.length));
 
     return rnTxt
   }
 
   _renderEmoji() {
-    const {isEmoji, focused} = this.state
-    const emoji = WebIM.emoji
-    const emojiStyle = []
-    const rowIconNum = 7
-    const rowNum = 3
+    const {isEmoji, focused} = this.state;
+    const emoji = WebIM.emoji;
+    const emojiStyle = [];
+    const rowIconNum = 7;
+    const rowNum = 3;
     const emojis = Object.keys(emoji.map).map((v, k) => {
-      const name = emoji.map[v]
+      const name = emoji.map[v];
       return (
         <TouchableOpacity key={v + k} onPress={() => {
           this.handleEmojiClick(v)
@@ -440,7 +440,7 @@ class MessageScreen extends React.Component {
           <Text style={[Styles.emoji, emojiStyle]}><Emoji name={name}/></Text>
         </TouchableOpacity>
       )
-    })
+    });
     return isEmoji ? (
         <View style={Styles.emojiRow}>
           <Swiper style={Styles.wrapper} loop={false}
@@ -487,7 +487,7 @@ class MessageScreen extends React.Component {
   }
 
   _renderMessageBar() {
-    const {value = '', isEmoji} = this.state
+    const {value = '', isEmoji} = this.state;
 
     return (
       <View style={Styles.search}>
@@ -587,7 +587,7 @@ MessageScreen.propTypes = {
 // ------------ redux -------------
 const mapStateToProps = (state) => {
   return {
-    // TODO: 如何过滤无用的请求 、普通聊天和群里拆离 or 判断props？
+    // TODO: how to filter out unused requests, separate chat and group, and props determination？
     message: state.entities.message,
     // chatType: 'chat',
     // id: 'lwz3'

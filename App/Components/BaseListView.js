@@ -107,7 +107,7 @@ class BaseListView extends Component {
   _renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
     return (
       <View
-        key={'${sectionID}-${rowID}'}
+        key={`${sectionID}-${rowID}`}
         style={Styles.separator}
       />
     )

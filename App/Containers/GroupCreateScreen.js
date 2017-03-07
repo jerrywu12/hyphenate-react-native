@@ -37,7 +37,7 @@ class GroupCreateScreen extends React.Component {
   // ------------ init -------------
 
   constructor(props) {
-    super(props)
+    super(props);
 
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
@@ -54,10 +54,10 @@ class GroupCreateScreen extends React.Component {
       presses: 0,
       ds,
       dataSource: ds.cloneWithRowsAndSections({
-        // [群组通知，好友通知, 通知总数]
+        // [group notification, friend notification, notification count]
         // notices: [null,subscribes, length],
         notices: [],
-        // 作为Groups的快捷按钮使用
+        // Group's shortcut button
         groupHeader: ['INIT'],
         friends: [],
       })
@@ -102,8 +102,8 @@ class GroupCreateScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO: 是否需要更新的校验
-    // TODO: props更新，有没有更好的方式通知
+    // TODO: check if require update
+    // TODO: props update. Need better way of updating
     this.updateList(nextProps)
   }
 
@@ -111,7 +111,7 @@ class GroupCreateScreen extends React.Component {
   handleRefresh() {
     this.setState({isRefreshing: true});
     this.props.getContacts();
-    // TODO: 刷新成功/刷新失败
+    // TODO: fresh succeed/failed
     setTimeout(() => {
       this.setState({isRefreshing: false})
     }, 1000)
@@ -146,15 +146,15 @@ class GroupCreateScreen extends React.Component {
   }
 
   handleAddContact(id) {
-    // TODO: 已经是好友了
-    // TODO: 已经发送过邀请了
+    // TODO: already friend
+    // TODO: already send friend request
 
-    //TODO: 提示
+    //TODO: hint
     if (!id.trim()) {
       return;
     }
 
-    //TODO: 提示
+    //TODO: hint
     if (this.props.user == id.trim()) {
       return;
     }
@@ -173,7 +173,7 @@ class GroupCreateScreen extends React.Component {
   _renderInput() {
     return (
       <TouchableWithoutFeedback onPress={this.handleSelectSearch.bind(this)}>
-        {/* 保证搜索按钮的左侧区域点击也会触发input的聚焦事件 */}
+        {/* trigger the input focus event when tapping left region of search button */}
         <View style={Styles.search}>
           <View style={[Styles.searchRow, Styles.searchIcon, this.state.focused ? Styles.searchFocus : {}]}>
             <Ionicons name="ios-search-outline" size={15} color='#8798a4'/>
@@ -230,21 +230,20 @@ class GroupCreateScreen extends React.Component {
 
     return (
       <View style={[Styles.container]}>
-        {/* 头部 */}
         <View style={Styles.header}>
           {/* TODO: Input */}
           {this._renderInput()}
           {/* TODO: longPress */}
-          {/* 取消按钮，当input聚焦的时候出现 */}
+          {/* cancel button, show when input focused */}
           {this._renderCancel()}
-          {/* 加号 */}
+          {/* + sign */}
           <TouchableOpacity style={Styles.searchPlus} onPress={() => {
             this.setState({modalVisible: true})
           }}>
             <Ionicons size={30} name="ios-add" color={Colors.buttonGreen}/>
           </TouchableOpacity>
         </View>
-        {/* 内容区：listview */}
+        {/* content: listview */}
         <ListView
           refreshControl={
             <RefreshControl
@@ -267,7 +266,7 @@ class GroupCreateScreen extends React.Component {
           renderSectionHeader={this.renderSectionHeader}
           renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
         />
-        {/* 添加好友 modal */}
+        {/* add friend modal */}
         {this._renderModel()}
       </View>
     )
@@ -283,11 +282,11 @@ class GroupCreateScreen extends React.Component {
         return this._renderSectionFriends(rowData);
         break;
       case 'notices':
-        // 无通知消息
+        // no notification
         if (rowData == null) return null;
-        // 空白分割行，参数是未读消息数目
+        // blank space separator. the parameter is unread message count
         if (typeof rowData == 'boolean') return rowData ? this._renderSectionNoticesSpace() : null
-        // 有通知消息
+        // message notification
         return this._renderSectionNotices(rowData);
         break;
       default:
@@ -334,7 +333,6 @@ class GroupCreateScreen extends React.Component {
   }
 
   _renderSectionNoticesSpace() {
-    // console.log('gogoogo')
     return (
       <View style={{height: 30, backgroundColor: '#e4e9ec'}}>
       </View>
@@ -402,8 +400,7 @@ class GroupCreateScreen extends React.Component {
   }
 
   _renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
-    // only friends list needed separator line
-    // 只有好友列表才需要分割线
+    // only friends list needs separator line
     if (sectionID != 'friends') return null;
     return (
       // backgroundColor: adjacentRowHighlighted ? '#3B5998' : '#CCCCCC',

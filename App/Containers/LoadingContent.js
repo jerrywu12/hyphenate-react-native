@@ -41,12 +41,12 @@ class LoadingContent extends Component {
     //   }
     //   return false
     // })
-    // TODO: 10秒没有通知即关闭loading防止应该用户正常操作
+    // TODO: stop loading if no notification after 10 sec to avoid blocking the user interaction
   }
 
   componentDidUpdate() {
     setTimeout(() => {
-      console.log('setTimeout', this.context.drawer.props)
+      console.log('setTimeout', this.context.drawer.props);
       if (this.context.drawer.props.open) {
         this.toggleDrawer();
         return true
@@ -83,7 +83,6 @@ class LoadingContent extends Component {
       </View>
     )
   }
-
 }
 
 LoadingContent.contextTypes = {

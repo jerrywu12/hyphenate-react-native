@@ -74,7 +74,7 @@ class RegisterScreen extends React.Component {
   };
 
   handlePressLogin = () => {
-    const {username, password} = this.state
+    const {username, password} = this.state;
 
     if (!username || !username.trim()) {
       return Alert.alert(I18n.t('invalidID'))
@@ -83,7 +83,7 @@ class RegisterScreen extends React.Component {
       return Alert.alert(I18n.t('invalidPassword'))
     }
 
-    this.isAttempting = true
+    this.isAttempting = true;
     // attempt a login - a saga is listening to pick it up from here.
     this.props.attemptRegister(username, password)
   };
