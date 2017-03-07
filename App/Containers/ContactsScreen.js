@@ -88,8 +88,8 @@ class ContactsScreen extends React.Component {
 
   // ------------ handlers -------------
   handleRefresh() {
-    this.setState({isRefreshing: true})
-    this.props.getContacts()
+    this.setState({isRefreshing: true});
+    this.props.getContacts();
     // TODO: 刷新成功/刷新失败
     setTimeout(() => {
       this.setState({isRefreshing: false})
@@ -97,12 +97,12 @@ class ContactsScreen extends React.Component {
   }
 
   handleSelectSearch() {
-    this.refs.search && this.refs.search.focus()
+    this.refs.search && this.refs.search.focus();
     this.setState({focused: true})
   }
 
   handleChangeSearch(text) {
-    this.setState({search: text})
+    this.setState({search: text});
     this.updateList(false, text)
   }
 
@@ -111,16 +111,16 @@ class ContactsScreen extends React.Component {
   }
 
   handleBlurSearch() {
-    this.refs.search.blur()
+    this.refs.search.blur();
     this.setState({focused: false})
   }
 
   handleCancelSearch() {
-    this.refs.search.blur()
+    this.refs.search.blur();
     this.setState({
       focused: false,
       search: null,
-    })
+    });
     this.updateList()
   }
 
@@ -237,7 +237,7 @@ class ContactsScreen extends React.Component {
   _renderSectionFriends(rowData) {
     return (
       <TouchableOpacity onPress={() => {
-        this.handleInitSearch()
+        this.handleInitSearch();
         NavigationActions.contactInfo({"uid": rowData})
       }}>
         <View style={Styles.row}>
@@ -251,8 +251,8 @@ class ContactsScreen extends React.Component {
   }
 
   _renderSectionNotices(rowData) {
-    let keys = Object.keys(rowData)
-    if (keys.length == 0) return null
+    let keys = Object.keys(rowData);
+    if (keys.length == 0) return null;
     return (
       <View>
         <View style={Styles.noticeHeaderWrapper}>
@@ -281,11 +281,11 @@ class ContactsScreen extends React.Component {
   }
 
   _renderSectionnoticesRequests(rowData) {
-    let requests = []
+    let requests = [];
     let keys = Object.keys(rowData);
 
     keys.forEach((k) => {
-      v = rowData[k]
+      v = rowData[k];
       requests.push(
         <View key={`request-${k}`}>
           <View style={Styles.row}>
@@ -359,7 +359,7 @@ ContactsScreen.propTypes = {
   roster: PropTypes.shape({
     names: PropTypes.array
   })
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
@@ -368,7 +368,7 @@ const mapStateToProps = (state) => {
     subscribes: state.entities.subscribe.byFrom,
     user: state.ui.login.username,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -378,6 +378,6 @@ const mapDispatchToProps = (dispatch) => {
     declineSubscribe: (name) => dispatch(SubscribeActions.declineSubscribe(name)),
     logout: () => dispatch(WebIMActions.logout()),
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactsScreen)

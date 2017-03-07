@@ -33,10 +33,11 @@ const data = {
       ]
     }
   ]
-}
-// 复杂对象
+};
+
+// complex objects
 // - {{}}
-// 多组合
+// multiple combinations
 // - 1-2-1
 // - m-tt-b  (i:icon m:image t:text b:button s:switch)
 // [{, [{}, {}], {}]
@@ -45,21 +46,21 @@ const data = {
 export default class Base extends React.Component {
 
   renderComponent(sub) {
-    const {type, style = {}} = sub
+    const {type, style = {}} = sub;
 
     switch (type) {
       case 'text':
-        return <Text {...sub}>sub.text</Text>
+        return <Text {...sub}>sub.text</Text>;
         break
     }
 
   }
 
   renderSubs(subs) {
-    const views = []
+    const views = [];
 
     subs.forEach((sub) => {
-      const {wrapperStyle = {}} = sub
+      const {wrapperStyle = {}} = sub;
 
       if (sub.subs) {
         views.push(
@@ -74,16 +75,16 @@ export default class Base extends React.Component {
           </View>
         )
       }
-    })
+    });
 
     return views
   }
 
   render() {
 
-    if (!data) return null
+    if (!data) return null;
 
-    const subs = this.renderSubs(data.subs)
+    const subs = this.renderSubs(data.subs);
 
     return (
       <View style={[]}>

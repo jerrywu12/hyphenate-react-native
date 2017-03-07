@@ -7,18 +7,18 @@ import Styles from './Styles/ButtonStyle'
 
 export default class Button extends React.Component {
   render() {
-    const {color, isHighlight = false, styles} = this.props
+    const {color, isHighlight = false, styles} = this.props;
 
     // const Touchable = Platform.OS === 'android' ?  : TouchableOpacity;
 
     let textStyles = [];
-    color && textStyles.push({color: color})
+    color && textStyles.push({color: color});
 
     let textWrapperStyles = [Styles.button, styles, {
       // borderWidth: 1,
       justifyContent: 'center',
-    }]
-    textWrapperStyles.push({backgroundColor: isHighlight ? Colors.buttonGreen : Colors.coolGrey})
+    }];
+    textWrapperStyles.push({backgroundColor: isHighlight ? Colors.buttonGreen : Colors.coolGrey});
 
     return Platform.OS === 'android' ? (
         <TouchableNativeFeedback

@@ -12,7 +12,7 @@ ExamplesRegistry.add('Map Callout', () =>
     }}
     onPress={() => window.alert('That tickles!')}
   />
-)
+);
 
 type MapCalloutProps = {
   location: Object,
@@ -20,7 +20,7 @@ type MapCalloutProps = {
 }
 
 export default class MapCallout extends React.Component {
-  props: MapCalloutProps
+  props: MapCalloutProps;
 
   constructor (props: MapCalloutProps) {
     super(props)
@@ -32,7 +32,7 @@ export default class MapCallout extends React.Component {
     * Customize the appearance of the callout that opens when the user interacts with a marker.
     * Note: if you don't want your callout surrounded by the default tooltip, pass `tooltip={true}` to `MapView.Callout`
     *************************************************************/
-    const { location } = this.props
+    const { location } = this.props;
     return (
       <MapView.Callout style={Styles.callout}>
         <TouchableOpacity onPress={this.onPress}>

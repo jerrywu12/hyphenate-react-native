@@ -11,7 +11,7 @@ ExamplesRegistry.add('Full Button', () =>
     text='Hey there'
     onPress={() => window.alert('Full Button Pressed!')}
   />
-)
+);
 
 type FullButtonProps = {
   text: string,
@@ -20,7 +20,7 @@ type FullButtonProps = {
 }
 
 export default class FullButton extends React.Component {
-  props: FullButtonProps
+  props: FullButtonProps;
 
   render () {
     return (

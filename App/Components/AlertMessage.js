@@ -19,7 +19,7 @@ ExamplesRegistry.add('Alert Message', () =>
       show={false}
     />
   </View>
-)
+);
 
 type AlertMessageProps = {
   title: string,
@@ -29,14 +29,14 @@ type AlertMessageProps = {
 }
 
 export default class AlertMessage extends React.Component {
-  static defaultProps: { show: boolean }
+  static defaultProps: { show: boolean };
 
-  props: AlertMessageProps
+  props: AlertMessageProps;
 
   render () {
-    let messageComponent = null
+    let messageComponent = null;
     if (this.props.show) {
-      const { title } = this.props
+      const { title } = this.props;
       return (
         <Animatable.View
           style={[styles.container, this.props.style]}
@@ -61,4 +61,4 @@ export default class AlertMessage extends React.Component {
 
 AlertMessage.defaultProps = {
   show: true
-}
+};

@@ -68,14 +68,14 @@ class GroupCreateScreen extends React.Component {
 
   updateList(props, search = '') {
     props = props || this.props;
-    let roster = props.roster || []
-    let subscribes = props.subscribes || []
-    let friends = roster && roster.friends
+    let roster = props.roster || [];
+    let subscribes = props.subscribes || [];
+    let friends = roster && roster.friends;
 
     if (this.state.search != search) {
       let friendsFilter = friends.filter((name) => {
         return name.indexOf(search) !== -1
-      })
+      });
 
       this.setState({
         dataSource: this.state.ds.cloneWithRowsAndSections({
@@ -109,8 +109,8 @@ class GroupCreateScreen extends React.Component {
 
   // ------------ handlers -------------
   handleRefresh() {
-    this.setState({isRefreshing: true})
-    this.props.getContacts()
+    this.setState({isRefreshing: true});
+    this.props.getContacts();
     // TODO: 刷新成功/刷新失败
     setTimeout(() => {
       this.setState({isRefreshing: false})
@@ -118,12 +118,12 @@ class GroupCreateScreen extends React.Component {
   }
 
   handleSelectSearch() {
-    this.refs.search && this.refs.search.focus()
+    this.refs.search && this.refs.search.focus();
     this.setState({focused: true})
   }
 
   handleChangeSearch(text) {
-    this.updateList(false, text)
+    this.updateList(false, text);
     this.setState({search: text})
   }
 
@@ -132,16 +132,16 @@ class GroupCreateScreen extends React.Component {
   }
 
   handleBlurSearch() {
-    this.refs.search.blur()
+    this.refs.search.blur();
     this.setState({focused: false})
   }
 
   handleCancelSearch() {
-    this.refs.search.blur()
+    this.refs.search.blur();
     this.setState({
       focused: false,
       search: null,
-    })
+    });
     this.updateList()
   }
 
@@ -277,21 +277,21 @@ class GroupCreateScreen extends React.Component {
     // console.log(rowData, typeof rowData == 'boolean')
     switch (sectionId) {
       case 'groupHeader':
-        return this._renderSectionGroupHeader()
+        return this._renderSectionGroupHeader();
         break;
       case 'friends':
-        return this._renderSectionFriends(rowData)
+        return this._renderSectionFriends(rowData);
         break;
       case 'notices':
         // 无通知消息
-        if (rowData == null) return null
+        if (rowData == null) return null;
         // 空白分割行，参数是未读消息数目
         if (typeof rowData == 'boolean') return rowData ? this._renderSectionNoticesSpace() : null
         // 有通知消息
-        return this._renderSectionNotices(rowData)
+        return this._renderSectionNotices(rowData);
         break;
       default:
-        return null
+        return null;
         break;
     }
   }
@@ -312,8 +312,8 @@ class GroupCreateScreen extends React.Component {
   }
 
   _renderSectionNotices(rowData) {
-    let keys = Object.keys(rowData)
-    if (keys.length == 0) return null
+    let keys = Object.keys(rowData);
+    if (keys.length == 0) return null;
     return (
       <View>
         <View style={Styles.noticeHeaderWrapper}>
@@ -342,11 +342,11 @@ class GroupCreateScreen extends React.Component {
   }
 
   _renderSectionnoticesRequests(rowData) {
-    let requests = []
+    let requests = [];
     let keys = Object.keys(rowData);
 
     keys.forEach((k) => {
-      v = rowData[k]
+      v = rowData[k];
       requests.push(
         <View key={`request-${k}`}>
           <View style={Styles.row}>
@@ -377,7 +377,7 @@ class GroupCreateScreen extends React.Component {
           </View>
         </View>
       )
-    })
+    });
     return requests
   }
 
@@ -442,7 +442,7 @@ class GroupCreateScreen extends React.Component {
           }
         }
       ]
-    }
+    };
 
     const rowData2 = {
       onPress: null,
@@ -471,7 +471,7 @@ class GroupCreateScreen extends React.Component {
           }
         }
       ]
-    }
+    };
 
     return (
       <View style={{marginTop: Metrics.navBarHeight}}>
@@ -489,7 +489,7 @@ GroupCreateScreen.propTypes = {
   roster: PropTypes.shape({
     names: PropTypes.array
   })
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
@@ -498,7 +498,7 @@ const mapStateToProps = (state) => {
     subscribes: state.entities.subscribe.byFrom,
     user: state.ui.login.username,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -517,6 +517,6 @@ const mapDispatchToProps = (dispatch) => {
     declineSubscribe: (name) => dispatch(SubscribeActions.declineSubscribe(name)),
     logout: () => dispatch(WebIMActions.logout()),
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupCreateScreen)

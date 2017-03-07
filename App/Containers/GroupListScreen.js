@@ -35,8 +35,8 @@ class GroupListScreen extends Component {
   _renderRow(rowData, sectionId, rowID, highlightRow) {
     return (
       <TouchableOpacity onPress={() => {
-        let data = this.props.group.byName[rowData]
-        console.log(this.props.group, rowData)
+        let data = this.props.group.byName[rowData];
+        console.log(this.props.group, rowData);
         NavigationActions.groupMembers({
           group: data
         })
@@ -63,7 +63,7 @@ class GroupListScreen extends Component {
   }
 
   render() {
-    const {group} = this.props
+    const {group} = this.props;
     const names = {
       group: group.names
     }
@@ -83,20 +83,20 @@ class GroupListScreen extends Component {
 
 GroupListScreen.propTypes = {
   group: PropTypes.object,
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
   return {
     group: state.entities.group,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getGroups: () => dispatch(GroupActions.getGroups())
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupListScreen)
 

@@ -27,7 +27,7 @@ class RegisterScreen extends React.Component {
       // password: 'password',
       visibleHeight: Metrics.screenHeight,
       topLogo: {}
-    }
+    };
     this.isAttempting = false
   }
 
@@ -41,17 +41,17 @@ class RegisterScreen extends React.Component {
     //   // NavigationActions.pop()
     // }
   }
-a
+
   componentWillMount() {
     // Using keyboardWillShow/Hide looks 1,000 times better, but doesn't work on Android
     // TODO: Revisit this if Android begins to support - https://github.com/facebook/react-native/issues/3468
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow)
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide)
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow);
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
   }
 
   componentWillUnmount() {
-    this.keyboardDidShowListener.remove()
-    this.keyboardDidHideListener.remove()
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
   }
 
   keyboardDidShow = (e) => {
@@ -71,7 +71,7 @@ a
       visibleHeight: Metrics.screenHeight,
       topLogo: {}
     })
-  }
+  };
 
   handlePressLogin = () => {
     const {username, password} = this.state
@@ -86,22 +86,22 @@ a
     this.isAttempting = true
     // attempt a login - a saga is listening to pick it up from here.
     this.props.attemptRegister(username, password)
-  }
+  };
 
   handleChangeUsername = (text) => {
     this.setState({username: text})
-  }
+  };
 
   handleChangePassword = (text) => {
     this.setState({password: text})
-  }
+  };
 
   render() {
-    const {username, password} = this.state
-    const {fetching} = this.props
+    const {username, password} = this.state;
+    const {fetching} = this.props;
     const editable = true; //!fetching
-    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
-    let otherView = '<Text></Text>'
+    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly;
+    let otherView = '<Text></Text>';
 
     if (Platform.OS == 'android') {
       otherView = [
@@ -198,12 +198,12 @@ const mapStateToProps = (state) => {
     fetching: state.ui.login.fetching,
     registerError: state.ui.login.registerError
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptRegister: (username, password) => dispatch(LoginActions.register(username, password))
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)

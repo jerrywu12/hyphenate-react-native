@@ -65,10 +65,10 @@ class GroupMembersScreen extends Component {
   }
 
   render() {
-    const {groupMember, group} = this.props
+    const {groupMember, group} = this.props;
     const names = {
       members: (groupMember[group.roomId] && groupMember[group.roomId].names) || []
-    }
+    };
 
     return (
       <BaseListView
@@ -86,20 +86,20 @@ class GroupMembersScreen extends Component {
 
 GroupMembersScreen.propTypes = {
   group: PropTypes.object,
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
   return {
     groupMember: state.entities.groupMember
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getGroupMember: (id) => dispatch(GroupMemberActions.getGroupMember(id))
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupMembersScreen)
 

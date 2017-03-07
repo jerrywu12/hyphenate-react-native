@@ -26,7 +26,7 @@ class BaseListView extends Component {
   // ------------ init -------------
 
   constructor(props) {
-    super(props)
+    super(props);
 
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
@@ -63,7 +63,7 @@ class BaseListView extends Component {
   }
 
   componentDidUpdate() {
-    const {autoScroll} = this.props
+    const {autoScroll} = this.props;
 
     if (autoScroll && "listHeight" in this.state &&
       "footerY" in this.state &&
@@ -78,8 +78,8 @@ class BaseListView extends Component {
   handleRefresh() {
     const {handleRefresh} = this.props;
 
-    this.setState({isRefreshing: true})
-    handleRefresh()
+    this.setState({isRefreshing: true});
+    handleRefresh();
     // TODO: 刷新成功/刷新失败
     setTimeout(() => {
       this.setState({isRefreshing: false})
@@ -107,12 +107,11 @@ class BaseListView extends Component {
   _renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
     return (
       <View
-        key={`${sectionID}-${rowID}`}
+        key={'${sectionID}-${rowID}'}
         style={Styles.separator}
       />
     )
   }
-
 
   render() {
     const {hasNav, renderRow, renderSeparator, listViewStyle, autoScroll = false} = this.props

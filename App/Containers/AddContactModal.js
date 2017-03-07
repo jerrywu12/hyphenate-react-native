@@ -37,7 +37,7 @@ class AddContactModal extends Component {
   }
 
   componentWillUnmount() {
-    this.keyboardDidShowListener.remove()
+    this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove()
   }
 
@@ -47,7 +47,7 @@ class AddContactModal extends Component {
     this.setState({
       keyboardShow: true,
     })
-  }
+  };
 
   keyboardDidHide = (e) => {
     // Animation types easeInEaseOut/linear/spring
@@ -55,33 +55,34 @@ class AddContactModal extends Component {
     this.setState({
       keyboardShow: false,
     })
-  }
+  };
 
 
   handleAddContact(id) {
-    // TODO: 已经是好友了
-    // TODO: 已经发送过邀请了
+    // TODO: already friend
+    // TODO: friend request sent
 
-    //TODO: 提示
+    //TODO: hint
     if (!id.trim()) {
       return;
     }
 
-    //TODO: 提示
+    //TODO: hint
     if (this.props.user == id.trim()) {
       return;
     }
 
     this.setState({
       id: ''
-    })
+    });
+
     Alert.alert(I18n.t('requestHasSent'))
     this.props.addContact(id)
   }
 
   // ------------ renders -------------
   render() {
-    let {keyboardShow} = this.state
+    let {keyboardShow} = this.state;
 
     return (
       <View style={Styles.container}>
@@ -116,19 +117,19 @@ class AddContactModal extends Component {
 
 AddContactModal.propTypes = {
   user: PropTypes.string
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
   return {
     user: state.ui.login.username,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addContact: (id) => dispatch(RosterActions.addContact(id)),
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddContactModal)

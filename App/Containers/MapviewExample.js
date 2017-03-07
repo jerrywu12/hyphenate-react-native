@@ -24,7 +24,7 @@ class MapviewExample extends React.Component {
   *************************************************************/
 
   constructor (props) {
-    super(props)
+    super(props);
     /* ***********************************************************
     * STEP 1
     * Set the array of locations to be displayed on your map. You'll need to define at least
@@ -33,7 +33,7 @@ class MapviewExample extends React.Component {
     const locations = [
       { title: 'Location A', latitude: 37.78825, longitude: -122.4324 },
       { title: 'Location B', latitude: 37.75825, longitude: -122.4624 }
-    ]
+    ];
     /* ***********************************************************
     * STEP 2
     * Set your initial region either by dynamically calculating from a list of locations (as below)
@@ -44,7 +44,7 @@ class MapviewExample extends React.Component {
       region,
       locations,
       showUserLocation: true
-    }
+    };
     this.renderMapMarkers = this.renderMapMarkers.bind(this)
     this.onRegionChange = this.onRegionChange.bind(this)
   }
@@ -118,6 +118,6 @@ const mapStateToProps = (state) => {
   return {
     // ...redux state to props here
   }
-}
+};
 
 export default connect(mapStateToProps)(MapviewExample)

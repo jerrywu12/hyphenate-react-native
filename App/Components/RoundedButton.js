@@ -21,10 +21,10 @@ type RoundedButtonProps = {
 }
 
 export default class RoundedButton extends React.Component {
-  props: RoundedButtonProps
+  props: RoundedButtonProps;
 
   getText () {
-    const buttonText = this.props.text || this.props.children || ''
+    const buttonText = this.props.text || this.props.children || '';
     return buttonText.toUpperCase()
   }
 

@@ -35,7 +35,7 @@ class ContactsAndroidScreen extends React.Component {
   // ------------ init -------------
 
   constructor(props) {
-    super(props)
+    super(props);
 
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
@@ -52,10 +52,10 @@ class ContactsAndroidScreen extends React.Component {
       presses: 0,
       ds,
       dataSource: ds.cloneWithRowsAndSections({
-        // [群组通知，好友通知, 通知总数]
+        // [group notification, friend notification, notification count]
         // notices: [null,subscribes, length],
         notices: [],
-        // 作为Groups的快捷按钮使用
+        // Group's shortcut button
         groupHeader: ['INIT'],
         friends: [],
       })
@@ -66,14 +66,14 @@ class ContactsAndroidScreen extends React.Component {
 
   updateList(props, search = '') {
     props = props || this.props;
-    let roster = props.roster || []
-    let subscribes = props.subscribes || []
-    let friends = roster && roster.friends
+    let roster = props.roster || [];
+    let subscribes = props.subscribes || [];
+    let friends = roster && roster.friends;
 
     if (this.state.search != search) {
       let friendsFilter = friends.filter((name) => {
         return name.indexOf(search) !== -1
-      })
+      });
 
       this.setState({
         dataSource: this.state.ds.cloneWithRowsAndSections({
@@ -100,54 +100,54 @@ class ContactsAndroidScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO: 是否需要更新的校验
-    // TODO: props更新，有没有更好的方式通知
+    // TODO: check if require update
+    // TODO: props update. Need better way of updating
     this.updateList(nextProps)
   }
 
   // ------------ handlers -------------
   handleRefresh() {
-    this.setState({isRefreshing: true})
-    this.props.getContacts()
-    // TODO: 刷新成功/刷新失败
+    this.setState({isRefreshing: true});
+    this.props.getContacts();
+    // TODO: fresh succeed/failed
     setTimeout(() => {
       this.setState({isRefreshing: false})
     }, 1000)
   }
 
   handleSelectSearch() {
-    this.refs.search && this.refs.search.focus()
+    this.refs.search && this.refs.search.focus();
     this.setState({focused: true})
   }
 
   handleChangeSearch(text) {
-    this.updateList(false, text)
-    this.setState({search: text})
+    this.updateList(false, text);
+    this.setState({search: text});
   }
 
   handleFocusSearch() {
-    this.setState({focused: true})
+    this.setState({focused: true});
   }
 
   handleBlurSearch() {
-    this.refs.search.blur()
-    this.setState({focused: false})
+    this.refs.search.blur();
+    this.setState({focused: false});
   }
 
   handleCancelSearch() {
-    this.refs.search.blur()
+    this.refs.search.blur();
     this.setState({
       focused: false,
       search: null,
-    })
-    this.updateList()
+    });
+    this.updateList();
   }
 
   handleAddContact(id) {
-    // TODO: 已经是好友了
-    // TODO: 已经发送过邀请了
+    // TODO: already friend
+    // TODO: already send friend request
 
-    //TODO: 提示
+    //TODO: hint
     if (!id.trim()) {
       return;
     }
@@ -421,7 +421,7 @@ ContactsAndroidScreen.propTypes = {
   roster: PropTypes.shape({
     names: PropTypes.array
   })
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
@@ -430,12 +430,12 @@ const mapStateToProps = (state) => {
     subscribes: state.entities.subscribe.byFrom,
     user: state.ui.login.username,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     test: () => {
-      dispatch(CommonActions.fetching())
+      dispatch(CommonActions.fetching());
 
       setTimeout(() => {
         dispatch(CommonActions.fetched())
@@ -449,6 +449,6 @@ const mapDispatchToProps = (dispatch) => {
     declineSubscribe: (name) => dispatch(SubscribeActions.declineSubscribe(name)),
     logout: () => dispatch(WebIMActions.logout()),
   }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsAndroidScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsAndroidScreen);

@@ -18,9 +18,9 @@ class DrawerContent extends Component {
     //   return false
     // })
     setTimeout(() => {
-      console.log('setTimeout', this.context.drawer.props)
+      console.log('setTimeout', this.context.drawer.props);
       if (this.context.drawer.props.open) {
-        this.toggleDrawer()
+        this.toggleDrawer();
         return true
       }
     }, 5000)
@@ -31,34 +31,34 @@ class DrawerContent extends Component {
   }
 
   handlePressComponents = () => {
-    this.toggleDrawer()
+    this.toggleDrawer();
     NavigationActions.componentExamples()
-  }
+  };
 
   handlePressUsage = () => {
-    this.toggleDrawer()
+    this.toggleDrawer();
     NavigationActions.usageExamples()
-  }
+  };
 
   handlePressAPI = () => {
-    this.toggleDrawer()
+    this.toggleDrawer();
     NavigationActions.apiTesting()
-  }
+  };
 
   handlePressTheme = () => {
-    this.toggleDrawer()
+    this.toggleDrawer();
     NavigationActions.theme()
-  }
+  };
 
   handlePressDevice = () => {
-    this.toggleDrawer()
+    this.toggleDrawer();
     NavigationActions.deviceInfo()
-  }
+  };
 
   handleLogin = () => {
-    this.toggleDrawer()
+    this.toggleDrawer();
     NavigationActions.login()
-  }
+  };
 
   render() {
     return (
@@ -78,6 +78,6 @@ class DrawerContent extends Component {
 
 DrawerContent.contextTypes = {
   drawer: React.PropTypes.object
-}
+};
 
 export default DrawerContent

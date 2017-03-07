@@ -11,6 +11,6 @@ const REDUX_PERSIST = {
     // persistence. An empty array means 'don't store any reducers' -> infinitered/ignite#409
     transforms: [immutablePersistenceTransform]
   }
-}
+};
 
 export default REDUX_PERSIST

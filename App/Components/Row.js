@@ -37,28 +37,28 @@ const data = {
 
 export default class Row extends React.Component {
 
-  static key = 1
+  static key = 1;
 
   renderComponent(sub) {
-    const {type, style = {}} = sub
+    const {type, style = {}} = sub;
 
     switch (type) {
       case 'text':
-        return <Text {...sub}>{sub.text}</Text>
+        return <Text {...sub}>{sub.text}</Text>;
         break
       case 'image':
-        return <Image resizeMode="cover" {...sub} />
+        return <Image resizeMode="cover" {...sub} />;
         break
     }
   }
 
   renderSubs(subs, isWrapper = true) {
-    const views = []
+    const views = [];
     subs.forEach((sub) => {
-      const {wrapperStyle = {}, onPress} = sub
-      const Wrapper = onPress ? TouchableOpacity : View
-      const rowStyle = isWrapper ? Styles.rowDetail : Styles.flex
-      Row.key++
+      const {wrapperStyle = {}, onPress} = sub;
+      const Wrapper = onPress ? TouchableOpacity : View;
+      const rowStyle = isWrapper ? Styles.rowDetail : Styles.flex;
+      Row.key++;
       // console.log(sub, isWrapper)
       if (sub.subs) {
         views.push(
@@ -73,7 +73,7 @@ export default class Row extends React.Component {
           </Wrapper>
         )
       }
-    })
+    });
 
     return views
   }
@@ -84,11 +84,11 @@ export default class Row extends React.Component {
       },
       wrapperStyle = {},
       subs = null,
-    } = this.props.data || {}
+    } = this.props.data || {};
 
-    if (!subs) return null
+    if (!subs) return null;
 
-    const subView = this.renderSubs(subs)
+    const subView = this.renderSubs(subs);
 
     return (
       <View onPress={onPress} style={[wrapperStyle, Styles.horizontal]}>

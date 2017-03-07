@@ -28,7 +28,7 @@ const SHEET_BUTTON = ['Delete', 'Cancel']
 class ContactInfoScreen extends Component {
   // ------------ init -------------
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isBlocked: false
     }
@@ -36,11 +36,11 @@ class ContactInfoScreen extends Component {
 
   // ------------ logic  ---------------
   setBlock(props) {
-    const {uid, names, rosterNames} = props
-    let isBlocked = names.indexOf(uid) !== -1
+    const {uid, names, rosterNames} = props;
+    let isBlocked = names.indexOf(uid) !== -1;
     this.setState({
       isBlocked
-    })
+    });
 
     if (rosterNames.indexOf(uid) === -1) {
       NavigationActions.pop()
@@ -60,7 +60,7 @@ class ContactInfoScreen extends Component {
 
   handleDelete() {
     if (Platform.OS == 'ios') {
-      //TODO: 不同button如何定义不同的颜色
+      //TODO: different colors for different buttons
       ActionSheetIOS.showActionSheetWithOptions({
           options: SHEET_BUTTON,
           cancelButtonIndex: 1,
@@ -81,7 +81,7 @@ class ContactInfoScreen extends Component {
   handleSwitch(v) {
     this.setState({
       isBlocked: v
-    })
+    });
     if (v) {
       this.props.doAddBlacklist(this.props.uid)
     } else {
@@ -91,8 +91,8 @@ class ContactInfoScreen extends Component {
 
   // ------------ render -------------
   render() {
-    const {uid, names} = this.props
-    const {isBlocked} = this.state
+    const {uid, names} = this.props;
+    const {isBlocked} = this.state;
 
     {/*contentOffset={{x: 0, y: -10}}*/
     }
@@ -127,7 +127,7 @@ class ContactInfoScreen extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          {/* 信息区 */}
+          {/* messages */}
           <View style={Styles.rowDetails}>
             <View style={[Styles.rowDetail, Styles.rowBorder]}>
               <View style={[Styles.flex]}>
@@ -146,7 +146,7 @@ class ContactInfoScreen extends Component {
               </View>
             </View>
           </View>
-          {/* 操作区*/}
+          {/* operation */}
           <View style={[Styles.rowDetails, Styles.operator]}>
             <View style={[Styles.rowDetail, Styles.rowBorder, Styles.horizontal]}>
               <View style={[Styles.flex]}>
@@ -170,9 +170,9 @@ class ContactInfoScreen extends Component {
 
 
 ContactInfoScreen.propTypes = {
-  // 当前查看的用户id
+  // current checking user id
   uid: PropTypes.string,
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
@@ -180,7 +180,7 @@ const mapStateToProps = (state) => {
     rosterNames: state.entities.roster.names,
     names: state.entities.blacklist.names
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -188,6 +188,6 @@ const mapDispatchToProps = (dispatch) => {
     doAddBlacklist: (id) => dispatch(BlacklistActions.doAddBlacklist(id)),
     doRemoveBlacklist: (id) => dispatch(BlacklistActions.doRemoveBlacklist(id)),
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactInfoScreen)

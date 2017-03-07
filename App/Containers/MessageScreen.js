@@ -45,9 +45,9 @@ class MessageScreen extends React.Component {
 
   // ------------ init -------------
   constructor(props) {
-    super(props)
+    super(props);
 
-    console.log(props)
+    console.log(props);
 
     this.state = {
       height: 34,
@@ -61,10 +61,10 @@ class MessageScreen extends React.Component {
 
   // ------------ logic  ---------------
   updateList(props) {
-    const {message, chatType, id} = props
-    const {byId} = message
-    const chatTypeData = message[chatType] || {}
-    const chatData = chatTypeData[id] || []
+    const {message, chatType, id} = props;
+    const {byId} = message;
+    const chatTypeData = message[chatType] || {};
+    const chatData = chatTypeData[id] || [];
     // console.log(chatType, id, message, chatTypeData, chatData)
     this.setState({
       messages: {
@@ -101,13 +101,13 @@ class MessageScreen extends React.Component {
 
   keyboardDidShow = (e) => {
     // Animation chatTypes easeInEaseOut/linear/spring
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-    let newSize = Metrics.screenHeight - e.endCoordinates.height
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    let newSize = Metrics.screenHeight - e.endCoordinates.height;
     this.setState({
       keyboardHeight: e.endCoordinates.height,
       visibleHeight: newSize,
     })
-  }
+  };
 
   keyboardDidHide = (e) => {
     // Animation chatTypes easeInEaseOut/linear/spring
@@ -116,10 +116,10 @@ class MessageScreen extends React.Component {
       keyboardHeight: 0,
       visibleHeight: Metrics.screenHeight,
     })
-  }
+  };
   // ------------ handlers -------------
   handleRefresh() {
-    this.setState({isRefreshing: true})
+    this.setState({isRefreshing: true});
     // this.props.getContacts()
     // TODO: 刷新成功/刷新失败
     setTimeout(() => {
@@ -132,7 +132,6 @@ class MessageScreen extends React.Component {
       focused: true,
       isEmoji: false,
     })
-
   }
 
   handleBlurSearch() {
@@ -140,10 +139,10 @@ class MessageScreen extends React.Component {
   }
 
   handleSend() {
-    if (!this.state.value || !this.state.value.trim()) return
+    if (!this.state.value || !this.state.value.trim()) return;
     this.props.sendTxtMessage(this.props.chatType, this.props.id, {
       msg: this.state.value.trim()
-    })
+    });
     this.setState({
       value: '',
       height: 34
@@ -166,7 +165,7 @@ class MessageScreen extends React.Component {
   handleImagePicker() {
     this.setState({
       isEmoji: false
-    })
+    });
     ImagePicker.launchImageLibrary(options, (response) => {
         console.log('Response = ', response);
 
@@ -191,8 +190,8 @@ class MessageScreen extends React.Component {
             source = {uri: response.uri, isStatic: true};
           }
 
-          response.uri = source.uri
-          const {chatType, id} = this.props
+          response.uri = source.uri;
+          const {chatType, id} = this.props;
           this.props.sendImgMessage(chatType, id, {}, response)
         }
       }
@@ -203,7 +202,7 @@ class MessageScreen extends React.Component {
   handleCameraPicker() {
     this.setState({
       isEmoji: false
-    })
+    });
     // Launch Camera:
     ImagePicker.launchCamera(options, (response) => {
       console.log('Response = ', response);
@@ -229,8 +228,8 @@ class MessageScreen extends React.Component {
           source = {uri: response.uri, isStatic: true};
         }
 
-        response.uri = source.uri
-        const {chatType, id} = this.props
+        response.uri = source.uri;
+        const {chatType, id} = this.props;
         this.props.sendImgMessage(chatType, id, {}, response)
       }
     });
