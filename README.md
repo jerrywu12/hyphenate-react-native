@@ -1,10 +1,10 @@
-# React Native and Strophe for real-time Apps  @ 环信
+# React Native and Strophe
 
-更详细的QA、IDE配置请参考[文档](https://github.com/wytheme/wytheme.github.io/blob/master/raw/react-native-and-strophe.md)
+[See more details regarding to QA and IDE setups](https://github.com/wytheme/wytheme.github.io/blob/master/raw/react-native-and-strophe.md)
 
 ## 目录
 
-1. [版本支持](#版本支持)
+1. [Version Support](#Version Support)
 1. [更新日志](#更新日志)
 1. [Start](#start)
    1. [初始化项目](#initial) 
@@ -19,7 +19,7 @@
 1. [Todo](#todo)
 1. [Sdk 集成](#sdk)
       
-## 版本支持
+## Version Support
 
 iOS >= 9.0 , Android >= 4.1 (API 16)
 
