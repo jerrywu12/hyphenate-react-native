@@ -10,7 +10,6 @@ export default create({
     backgroundColor: Colors.snow,
     // marginTop: Metrics.navBarHeight,
   },
-  // 头
   // header: {
   //   // flex: 1,
   //   height: 44,

@@ -17,26 +17,26 @@ import styles from './Styles/APITestingScreenStyle'
 const endpoints = [
   { label: 'Get City (Boise)', endpoint: 'getCity', args: ['Boise'] },
   { label: 'Get City (Toronto)', endpoint: 'getCity', args: ['Toronto'] }
-]
+];
 
 export default class APITestingScreen extends React.Component {
-  api: Object
+  api: Object;
 
   state: {
     visibleHeight: number
-  }
+  };
 
   constructor (props: Object) {
-    super(props)
+    super(props);
     this.state = {
       visibleHeight: Metrics.screenHeight
-    }
+    };
 
     this.api = API.create()
   }
 
   showResult (response: Object, title: string = 'Response') {
-    this.refs.container.scrollTo({x: 0, y: 0, animated: true})
+    this.refs.container.scrollTo({x: 0, y: 0, animated: true});
     if (response.ok) {
       this.refs.result.setState({message: FJSON.plain(response.data), title: title})
     } else {
@@ -45,14 +45,14 @@ export default class APITestingScreen extends React.Component {
   }
 
   tryEndpoint (apiEndpoint: Object) {
-    const { label, endpoint, args = [''] } = apiEndpoint
+    const { label, endpoint, args = [''] } = apiEndpoint;
     this.api[endpoint].apply(this, args).then((result) => {
       this.showResult(result, label || `${endpoint}(${args.join(', ')})`)
     })
   }
 
   renderButton (apiEndpoint: Object) {
-    const { label, endpoint, args = [''] } = apiEndpoint
+    const { label, endpoint, args = [''] } = apiEndpoint;
     return (
       <FullButton text={label || `${endpoint}(${args.join(', ')})`} onPress={this.tryEndpoint.bind(this, apiEndpoint)} styles={{marginTop: 10}} key={`${endpoint}-${args.join('-')}`} />
     )
@@ -90,10 +90,10 @@ class APIResult extends React.Component {
   state: {
     message: boolean,
     title: boolean
-  }
+  };
 
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       message: false,
       title: false
@@ -102,7 +102,7 @@ class APIResult extends React.Component {
 
   onApiPress = () => {
     this.setState({message: false})
-  }
+  };
 
   renderView () {
     return (
@@ -121,7 +121,7 @@ class APIResult extends React.Component {
   }
 
   render () {
-    let messageView = null
+    let messageView = null;
     if (this.state.message) {
       return this.renderView()
     }

@@ -11,7 +11,7 @@ ExamplesRegistry.add('Drawer Button', () =>
     text='Example left drawer button'
     onPress={() => window.alert('Your drawers are showing')}
   />
-)
+);
 
 type DrawerButtonProps = {
   text: string,
@@ -19,7 +19,7 @@ type DrawerButtonProps = {
 }
 
 class DrawerButton extends Component {
-  props: DrawerButtonProps
+  props: DrawerButtonProps;
 
   render () {
     return (

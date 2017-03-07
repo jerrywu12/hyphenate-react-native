@@ -15,7 +15,7 @@ export default class Input extends React.Component {
   state = {
     focused: false,
     search: ''
-  }
+  };
 
   // ------------ logic  ---------------
 
@@ -27,7 +27,7 @@ export default class Input extends React.Component {
   }
 
   handleSelectSearch() {
-    this.refs.search.focus()
+    this.refs.search.focus();
     this.setState({focused: true})
   }
 
@@ -36,7 +36,7 @@ export default class Input extends React.Component {
   }
 
   handleBlurSearch() {
-    this.refs.search.blur()
+    this.refs.search.blur();
     this.setState({focused: false})
   }
 
@@ -48,19 +48,19 @@ export default class Input extends React.Component {
       theme == 'default' ? Styles.searchDefault : {},
       this.state.focused ? Styles.searchFocus : {},
       backgroundColor ? {backgroundColor} : {}
-    ]
+    ];
 
     let searchIconStyle = [
       Styles.searchRow,
       Styles.searchIcon,
       this.state.focused || theme == 'default' ? Styles.searchIconFocus : {},
       backgroundColor ? {backgroundColor} : {}
-    ]
+    ];
 
     let searchRow = [
       Styles.searchRow,
       backgroundColor ? {backgroundColor} : {}
-    ]
+    ];
 
     return (
       <TouchableWithoutFeedback onPress={this.handleSelectSearch.bind(this)}>
@@ -96,4 +96,4 @@ export default class Input extends React.Component {
   }
 }
 
-Input.propTypes = {}
+Input.propTypes = {};

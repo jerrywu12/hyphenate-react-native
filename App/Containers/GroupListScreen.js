@@ -35,8 +35,8 @@ class GroupListScreen extends Component {
   _renderRow(rowData, sectionId, rowID, highlightRow) {
     return (
       <TouchableOpacity onPress={() => {
-        let data = this.props.group.byName[rowData]
-        console.log(this.props.group, rowData)
+        let data = this.props.group.byName[rowData];
+        console.log(this.props.group, rowData);
         NavigationActions.groupMembers({
           group: data
         })
@@ -45,7 +45,7 @@ class GroupListScreen extends Component {
           <Image source={Images.groupDefault} resizeMode='cover' style={Styles.rowLogo}/>
           <View style={Styles.rowName}>
             <Text style={Styles.groupName}>{rowData}</Text>
-            {/* 群组成员数量，由于默认群组信息没有成员信息，所以此处暂不显示 */}
+            {/* number of group member. Not displaying due to no member info in to the group message data */}
             {/*<Text style={Styles.groupIntro}>{rowData}</Text>*/}
           </View>
         </View>
@@ -63,7 +63,7 @@ class GroupListScreen extends Component {
   }
 
   render() {
-    const {group} = this.props
+    const {group} = this.props;
     const names = {
       group: group.names
     }
@@ -83,20 +83,20 @@ class GroupListScreen extends Component {
 
 GroupListScreen.propTypes = {
   group: PropTypes.object,
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
   return {
     group: state.entities.group,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getGroups: () => dispatch(GroupActions.getGroups())
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupListScreen)
 

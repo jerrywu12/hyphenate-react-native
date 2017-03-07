@@ -21,24 +21,24 @@ export default class InfoNavBar extends React.Component {
     } = this.props
 
     const rightButtonTitleComponent = rightTitle
-      ? (<Text style={{color: Colors.buttonGreen}}>{rightTitle}</Text>) : null
+      ? (<Text style={{color: Colors.buttonGreen}}>{rightTitle}</Text>) : null;
     const rightButtonIconComponent = rightIcon
-      ? (<Icon name={rightIcon} size={25} color={Colors.buttonGreen}/>) : null
+      ? (<Icon name={rightIcon} size={25} color={Colors.buttonGreen}/>) : null;
     const rightButton = (
       <TouchableOpacity style={Styles.rightButton} onPress={onRight}>
         {rightButtonTitleComponent || rightButtonIconComponent}
       </TouchableOpacity>
-    )
+    );
 
     const leftButtonTitleComponent = leftTitle
-      ? (<Text style={{color: Colors.buttonGreen}}>{leftTitle}</Text>) : null
+      ? (<Text style={{color: Colors.buttonGreen}}>{leftTitle}</Text>) : null;
     const leftButtonIconComponent = leftIcon
-      ? (<Icon name={leftIcon} size={20} color={Colors.buttonGreen}/>) : null
+      ? (<Icon name={leftIcon} size={20} color={Colors.buttonGreen}/>) : null;
     const leftButton = (
       <TouchableOpacity style={Styles.leftButton} onPress={onLeft}>
         {leftButtonTitleComponent || leftButtonIconComponent}
       </TouchableOpacity>
-    )
+    );
     return (
       <Animated.View style={[Styles.container, containerStyle]}>
         <View style={Styles.flexLeft}>

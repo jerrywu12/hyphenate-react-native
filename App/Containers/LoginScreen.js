@@ -44,13 +44,13 @@ class LoginScreen extends React.Component {
   // keyboardDidHideListener: Object
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       // username: Platform.OS,
       // password: 'password',
       visibleHeight: Metrics.screenHeight,
       topLogo: {}
-    }
+    };
     this.isAttempting = false
   }
 
@@ -74,7 +74,7 @@ class LoginScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    this.keyboardDidShowListener.remove()
+    this.keyboardDidShowListener.remove();
     this.keyboardDidHideListener.remove()
   }
 
@@ -82,12 +82,12 @@ class LoginScreen extends React.Component {
     // Animation types easeInEaseOut/linear/spring
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     let newSize = Metrics.screenHeight - e.endCoordinates.height
-    console.log(newSize)
+    console.log(newSize);
     this.setState({
       visibleHeight: newSize,
       topLogo: {paddingTop: 30}
     })
-  }
+  };
 
   keyboardDidHide = (e) => {
     // Animation types easeInEaseOut/linear/spring
@@ -96,10 +96,10 @@ class LoginScreen extends React.Component {
       visibleHeight: Metrics.screenHeight,
       topLogo: {}
     })
-  }
+  };
 
   handlePressLogin = (e) => {
-    const {username, password} = this.state
+    const {username, password} = this.state;
 
     if (!username || !username.trim()) {
       return Alert.alert(I18n.t('invalidID'))
@@ -108,7 +108,7 @@ class LoginScreen extends React.Component {
       return Alert.alert(I18n.t('invalidPassword'))
     }
 
-    this.isAttempting = true
+    this.isAttempting = true;
     // attempt a login - a saga is listening to pick it up from here.
     this.props.attemptLogin(username, password)
   }
@@ -122,11 +122,11 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-    const {username, password} = this.state
-    const {fetching} = this.props
+    const {username, password} = this.state;
+    const {fetching} = this.props;
     const editable = true;//!fetching
-    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly
-    let otherView = '<Text></Text>'
+    const textInputStyle = editable ? Styles.textInput : Styles.textInputReadonly;
+    let otherView = '<Text></Text>';
 
     if (Platform.OS == 'android') {
       otherView = [

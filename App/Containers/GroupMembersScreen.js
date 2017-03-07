@@ -47,7 +47,7 @@ class GroupMembersScreen extends Component {
           <Image source={Images.default} resizeMode='cover' style={Styles.rowLogo}/>
           <View style={Styles.rowName}>
             <Text style={Styles.groupName}>{rowData}</Text>
-            {/* 群组成员数量，由于默认群组信息没有成员信息，所以此处暂不显示 */}
+            {/* number of group member. Not displaying due to no member info in to the group message data */}
             {/*<Text style={Styles.groupIntro}>{rowData}</Text>*/}
           </View>
         </View>
@@ -65,10 +65,10 @@ class GroupMembersScreen extends Component {
   }
 
   render() {
-    const {groupMember, group} = this.props
+    const {groupMember, group} = this.props;
     const names = {
       members: (groupMember[group.roomId] && groupMember[group.roomId].names) || []
-    }
+    };
 
     return (
       <BaseListView
@@ -86,20 +86,20 @@ class GroupMembersScreen extends Component {
 
 GroupMembersScreen.propTypes = {
   group: PropTypes.object,
-}
+};
 
 // ------------ redux -------------
 const mapStateToProps = (state) => {
   return {
     groupMember: state.entities.groupMember
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getGroupMember: (id) => dispatch(GroupMemberActions.getGroupMember(id))
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupMembersScreen)
 

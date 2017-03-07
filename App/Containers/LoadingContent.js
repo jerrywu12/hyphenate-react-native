@@ -15,12 +15,12 @@ import {connect} from 'react-redux'
 class LoadingContent extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     // set state with passed in props
     this.state = {
       message: props.error,
       hide: props.hide,
-    }
+    };
     // bind functions
     this.dismissModal = this.dismissModal.bind(this)
   }
@@ -41,14 +41,14 @@ class LoadingContent extends Component {
     //   }
     //   return false
     // })
-    // TODO: 10秒没有通知即关闭loading防止应该用户正常操作
+    // TODO: stop loading if no notification after 10 sec to avoid blocking the user interaction
   }
 
   componentDidUpdate() {
     setTimeout(() => {
-      console.log('setTimeout', this.context.drawer.props)
+      console.log('setTimeout', this.context.drawer.props);
       if (this.context.drawer.props.open) {
-        this.toggleDrawer()
+        this.toggleDrawer();
         return true
       }
     }, 2000)
@@ -83,22 +83,21 @@ class LoadingContent extends Component {
       </View>
     )
   }
-
 }
 
 LoadingContent.contextTypes = {
   drawer: React.PropTypes.object
-}
+};
 
 const mapStateToProps = (state) => {
   return {
     hide: !state.ui.common.fetching,
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {}
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadingContent)
 

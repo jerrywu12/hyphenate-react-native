@@ -22,7 +22,7 @@ class UsageExamplesScreen extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     // Request push premissions only if the user has logged in.
-    const { loggedIn } = nextProps
+    const { loggedIn } = nextProps;
     if (loggedIn) {
       /*
       * If you have turned on Push in Xcode, http://i.imgur.com/qFDRhQr.png
@@ -36,17 +36,17 @@ class UsageExamplesScreen extends React.Component {
   // fires when we tap the rocket!
   handlePressRocket = () => {
     this.props.requestTemperature('Boise')
-  }
+  };
 
   // fires when tap send
   handlePressSend = () => {
     this.props.requestTemperature('Toronto')
-  }
+  };
 
   // fires when tap star
   handlePressStar = () => {
     this.props.requestTemperature('New Orleans')
-  }
+  };
 
   renderLoginButton () {
     return (
@@ -73,7 +73,7 @@ class UsageExamplesScreen extends React.Component {
   }
 
   renderUsageExamples () {
-    const { loggedIn, temperature, city } = this.props
+    const { loggedIn, temperature, city } = this.props;
     return (
       <View>
         {this.renderHeader(I18n.t('loginLogoutExampleTitle'))}
@@ -154,7 +154,7 @@ UsageExamplesScreen.propTypes = {
   city: PropTypes.string,
   logout: PropTypes.func,
   requestTemperature: PropTypes.func
-}
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -162,13 +162,13 @@ const mapStateToProps = (state) => {
     temperature: state.temperature.temperature,
     city: state.temperature.city
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(LoginActions.logout()),
     requestTemperature: (city) => dispatch(TemperatureActions.temperatureRequest(city))
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsageExamplesScreen)
