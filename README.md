@@ -1,7 +1,5 @@
 # React Native and Strophe
 
-[See more details regarding to QA and IDE setups](https://github.com/wytheme/wytheme.github.io/blob/master/raw/react-native-and-strophe.md)
-
 ## Content
 
 1. [Version Support](#version-support)
