@@ -1,7 +1,7 @@
 {
-  "name": "easemob-websdk",
-  "version": "1.1.7",
-  "description": "Easemob im websdk",
+  "name": "hyphenate-web",
+  "version": "1.4.5",
+  "description": "Hyphenate web SDK",
   "keywords": [
     "realtime",
     "im",
