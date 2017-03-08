@@ -9,7 +9,7 @@ import I18n from 'react-native-i18n'
 const {Types, Creators} = createActions({
   updateRoster: ['roster'],
   // ----------------async------------------
-  // 获取好友列表
+  // get contact list
   getContacts: () => {
     return (dispatch, getState) => {
       WebIM.conn.getRoster({
@@ -22,7 +22,8 @@ const {Types, Creators} = createActions({
       })
     }
   },
-  // 删除联系人
+
+  // remove contact
   removeContact: (id) => {
     return (dispatch, getState) => {
       //loading
@@ -39,12 +40,12 @@ const {Types, Creators} = createActions({
           });
         },
         error: function () {
-          //TODO ERROR
         }
       })
     }
   },
-  // 添加联系人
+
+  // add contact
   addContact: (id) => {
     return (dispatch, getState) => {
       WebIM.conn.subscribe({
@@ -53,7 +54,7 @@ const {Types, Creators} = createActions({
       })
     }
   },
-})
+});
 
 export const RosterTypes = Types
 export default Creators
@@ -63,7 +64,7 @@ export const INITIAL_STATE = Immutable({
   byName: null,
   names: [],
   friends: []
-})
+});
 
 /* ------------- Reducers ------------- */
 function isFriend(v) {
@@ -75,20 +76,20 @@ export const updateRoster = (state, {roster}) => {
     names = [],
     friends = [];
   roster.forEach((v) => {
-    byName[v.name] = v
-    names = Object.keys(byName).sort()
+    byName[v.name] = v;
+    names = Object.keys(byName).sort();
     isFriend(v) && friends.push(v.name)
-  })
+  });
   return state.merge({
     byName,
     names,
     friends,
   })
-}
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.UPDATE_ROSTER]: updateRoster,
-})
+});
 
 /* ------------- Selectors ------------- */

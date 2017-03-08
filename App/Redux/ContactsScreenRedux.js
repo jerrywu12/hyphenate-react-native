@@ -7,17 +7,17 @@ import Immutable from 'seamless-immutable'
 
 const {Types, Creators} = createActions({
   nop: null
-})
+});
 
-export const ContactsTypes = Types
+export const ContactsTypes = Types;
 export default Creators
 
 /* ------------- Initial State ------------- */
-export const INITIAL_STATE = Immutable({})
+export const INITIAL_STATE = Immutable({});
 
 /* ------------- Reducers ------------- */
 
 /* ------------- Hookup Reducers To Types ------------- */
-export const reducer = createReducer(INITIAL_STATE, {})
+export const reducer = createReducer(INITIAL_STATE, {});
 
 /* ------------- Selectors ------------- */

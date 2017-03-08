@@ -18,7 +18,7 @@ const {Types, Creators} = createActions({
       });
     }
   },
-})
+});
 
 export const GroupMemberTypes = Types
 export default Creators
@@ -34,19 +34,19 @@ export const updateGroupMember = (state, {id, members}) => {
   members.forEach((v) => {
     let name = (v.jid.match(/_(.*?)@/))[1]
     byName[name] = v
-  })
+  });
   return state.merge({
     [id]: {
       byName,
       names: Object.keys(byName).sort()
     }
   })
-}
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.UPDATE_GROUP_MEMBER]: updateGroupMember,
-})
+});
 
 /* ------------- Selectors ------------- */

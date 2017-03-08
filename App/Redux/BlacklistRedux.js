@@ -10,13 +10,13 @@ import CommonActions from './CommonRedux'
 const {Types, Creators} = createActions({
   updateBlacklist: ['list'],
   // ----------------async------------------
-  // 更新黑名单列表
+  // update blacklist
   getBlacklist: () => {
     return (dispatch, getState) => {
       WebIM.conn.getBlacklist();
     }
   },
-  // 添加到黑名单
+  // add to blacklist
   doAddBlacklist: (id) => {
     return (dispatch, getState) => {
       dispatch(CommonActions.fetching())
@@ -29,7 +29,7 @@ const {Types, Creators} = createActions({
         list: blacklist,
         type: 'jid',
         success: function () {
-          // TODO: 之前添加当前黑名单用户还是重新拉取黑名单
+          // TODO: get and update the blacklist before add user to blacklist
           dispatch(CommonActions.fetched())
         },
         error: function () {
@@ -38,7 +38,7 @@ const {Types, Creators} = createActions({
       })
     }
   },
-  // 从黑名单删除
+  // remove user from blacklist
   doRemoveBlacklist: (id) => {
     return (dispatch, getState) => {
       dispatch(CommonActions.fetching())
@@ -49,9 +49,8 @@ const {Types, Creators} = createActions({
         list: blacklist,
         type: 'jid',
         success: function () {
-          // TODO: 之前添加当前黑名单用户还是重新拉取黑名单
-          // 其实此处可以支持同步完成，只不过sdk中写的代码也自持listen
-          // 就直接使用listen，但是都没有做增量更新blacklist的操作
+          // TODO: get and update the blacklist before add user to blacklist
+          // WIP: synchronization blacklist using listener
           dispatch(CommonActions.fetched())
         },
         error: function () {
@@ -60,7 +59,7 @@ const {Types, Creators} = createActions({
       })
     }
   },
-})
+});
 
 export const BlacklistTypes = Types
 export default Creators
@@ -70,7 +69,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   byName: {},
   names: []
-})
+});
 
 /* ------------- Reducers ------------- */
 
@@ -79,12 +78,12 @@ export const updateBlacklist = (state, {list}) => {
     byName: list,
     names: Object.keys(list).sort(),
   })
-}
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.UPDATE_BLACKLIST]: updateBlacklist,
-})
+});
 
 /* ------------- Selectors ------------- */

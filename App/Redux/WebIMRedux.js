@@ -9,21 +9,21 @@ import GroupActions from '../Redux/GroupRedux'
 
 const {Types, Creators} = createActions({
   // ----------------async------------------
-  // 登出
+  // logout
   logout: () => {
     return (dispatch, state) => {
       if (WebIM.conn.isOpened()) {
         WebIM.conn.close('logout')
       }
 
-      dispatch({type: 'USER_LOGOUT'})
+      dispatch({type: 'USER_LOGOUT'});
 
       NavigationActions.login({type: ActionConst.REPLACE});
     }
   },
-})
+});
 
-export const WebIMTypes = Types
+export const WebIMTypes = Types;
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -31,7 +31,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   msgs: {},
   subscribes: {}
-})
+});
 
 /* ------------- Reducers ------------- */
 
@@ -39,15 +39,15 @@ export const subscribe = (state, {msg}) => {
   return state.merge({
     subscribes: Immutable(state.subscribes).set(msg.from, msg)
   }, {deep: true})
-}
+};
 
 export const removeSubscribe = (state, {name}) => {
-  let subs = state.subscribes.asMutable()
-  delete subs[name]
+  let subs = state.subscribes.asMutable();
+  delete subs[name];
   return state.merge({
     subscribes: Immutable(subs)
   })
-}
+};
 
 
 /* ------------- Hookup Reducers To Types ------------- */
@@ -55,7 +55,7 @@ export const removeSubscribe = (state, {name}) => {
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SUBSCRIBE]: subscribe,
   [Types.REMOVE_SUBSCRIBE]: removeSubscribe,
-})
+});
 
 /* ------------- Selectors ------------- */
 

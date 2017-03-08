@@ -24,21 +24,21 @@ const {Types, Creators} = createActions({
         username: username.trim().toLowerCase(),
         password: password,
         nickname: username.trim().toLowerCase()
-      }
+      };
       // console.log(options)
-      dispatch(Creators.registerRequest(username, password))
+      dispatch(Creators.registerRequest(username, password));
 
       // must be https for mac policy
       return api.register(options)
         .then(({data}) => {
           if (data.error) {
-            Alert.alert('Error', data.error_description)
-            dispatch(Creators.registerFailure(data))
+            Alert.alert('Error', data.error_description);
+            dispatch(Creators.registerFailure(data));
             return Promise.reject()
           }
 
-          Alert.alert('Success')
-          dispatch(Creators.registerSuccess(data))
+          Alert.alert('Success');
+          dispatch(Creators.registerSuccess(data));
           NavigationActions.login()
 
         }).catch(() => {
@@ -48,12 +48,12 @@ const {Types, Creators} = createActions({
   },
   login: (username, password) => {
     return (dispatch, getState) => {
-      dispatch(Creators.loginRequest(username, password))
+      dispatch(Creators.loginRequest(username, password));
 
       if (WebIM.conn.isOpened()) {
         WebIM.conn.close('logout')
       }
-      console.log('open', username, password)
+      console.log('open', username, password);
       WebIM.conn.open({
         apiUrl: WebIM.config.apiURL,
         user: username.trim().toLowerCase(),
@@ -63,7 +63,7 @@ const {Types, Creators} = createActions({
       })
     }
   }
-})
+});
 
 export const LoginTypes = Types
 export default Creators
@@ -75,36 +75,36 @@ export const INITIAL_STATE = Immutable({
   error: null,
   fetching: false,
   registerError: null
-})
+});
 
 /* ------------- Reducers ------------- */
 
 // we're attempting to login
 export const request = (state, {username, password}) => {
   return state.merge({username, password, fetching: true, error: false})
-}
+};
 
 // we've successfully logged in
 export const success = (state, {msg}) => {
   return state.merge({fetching: false, error: false, msg})
-}
+};
 
 // we've had a problem logging in
 export const failure = (state, {error}) => {
   return state.merge({fetching: false, error: error})
-}
+};
 
 export const registerRequest = (state = INITIAL_STATE, {username, password}) => {
   return state.merge({username, password, fetching: true})
-}
+};
 
 export const registerSuccess = (state = INITIAL_STATE, {json}) => {
   return state.merge({fetching: false, json, registerError: null})
-}
+};
 
 export const registerFailure = (state = INITIAL_STATE, {registerError}) => {
   return state.merge({fetching: false, registerError})
-}
+};
 
 // we've logged out
 export const logout = (state) => INITIAL_STATE
@@ -119,9 +119,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.REGISTER_SUCCESS]: registerSuccess,
   [Types.REGISTER_FAILURE]: registerFailure,
   [Types.LOGOUT]: logout
-})
+});
 
 /* ------------- Selectors ------------- */
 
 // Is the current user logged in?
-export const isLoggedIn = (loginState) => loginState.username !== null
+export const isLoggedIn = (loginState) => loginState.username !== null;

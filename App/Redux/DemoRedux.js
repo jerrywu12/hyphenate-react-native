@@ -13,7 +13,7 @@ const {Types, Creators} = createActions({
   }
 })
 
-export const DemoTypes = Types
+export const DemoTypes = Types;
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -21,21 +21,21 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   error: null,
   fetching: false,
-})
+});
 
 /* ------------- Reducers ------------- */
 
 export const request = (state, {username, password}) => {
   return state.merge({fetching: true, error: false})
-}
+};
 
 export const success = (state, {msg}) => {
   return state.merge({fetching: false, error: false, msg})
-}
+};
 
 export const failure = (state, {error}) => {
   return state.merge({fetching: false, error: true})
-}
+};
 
 // we've logged out
 export const logout = (state) => INITIAL_STATE
@@ -45,7 +45,7 @@ export const logout = (state) => INITIAL_STATE
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.NOP]: request,
   [Types.NOP_FUNC]: request,
-})
+});
 
 /* ------------- Selectors ------------- */
 

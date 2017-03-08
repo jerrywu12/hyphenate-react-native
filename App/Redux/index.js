@@ -21,16 +21,16 @@ export default () => {
       contacts: require('./ContactsScreenRedux').reducer,
     }),
     im: require('./WebIMRedux').reducer
-  })
+  });
 
-  // 登出清空state
+  // logout cleaning state
   const appReducer = (state, action) => {
     if (action.type === 'USER_LOGOUT') {
       state = {}
     }
 
     return rootReducer(state, action)
-  }
+  };
 
   const store = configureStore(appReducer)
 

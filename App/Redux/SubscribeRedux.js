@@ -10,15 +10,15 @@ const {Types, Creators} = createActions({
   addSubscribe: ['msg'],
   removeSubscribe: ['name'],
   // ----------------async------------------
-  // 接受好友请求
+  // accept friend request
   acceptSubscribe: (name) => {
     return (dispatch, getState) => {
-      dispatch(Creators.removeSubscribe(name))
+      dispatch(Creators.removeSubscribe(name));
 
       WebIM.conn.subscribed({
         to: name,
         message: '[resp:true]'
-      })
+      });
 
       WebIM.conn.subscribe({
         to: name,
@@ -26,10 +26,10 @@ const {Types, Creators} = createActions({
       })
     }
   },
-  // 拒绝好友请求
+  // decline friend request
   declineSubscribe: (name) => {
     return (dispatch, getState) => {
-      dispatch(Creators.removeSubscribe(name))
+      dispatch(Creators.removeSubscribe(name));
 
       WebIM.conn.unsubscribed({
         to: name,
@@ -37,16 +37,16 @@ const {Types, Creators} = createActions({
       })
     }
   }
-})
+});
 
-export const SubscribeTypes = Types
+export const SubscribeTypes = Types;
 export default Creators
 
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
   byFrom: {},
-})
+});
 
 /* ------------- Reducers ------------- */
 
@@ -54,7 +54,7 @@ export const subscribe = (state, {msg}) => {
   return state.merge({
     byFrom: Immutable(state.byFrom).set(msg.from, msg)
   }, {deep: true})
-}
+};
 
 export const removeSubscribe = (state, {name}) => {
   let subs = state.byFrom.asMutable()
@@ -62,13 +62,13 @@ export const removeSubscribe = (state, {name}) => {
   return state.merge({
     byFrom: Immutable(subs)
   })
-}
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.ADD_SUBSCRIBE]: subscribe,
   [Types.REMOVE_SUBSCRIBE]: removeSubscribe,
-})
+});
 
 /* ------------- Selectors ------------- */
