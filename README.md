@@ -2,19 +2,19 @@
 
 [See more details regarding to QA and IDE setups](https://github.com/wytheme/wytheme.github.io/blob/master/raw/react-native-and-strophe.md)
 
-## 目录
+## Content
 
-1. [Version Support](#Version Support)
-1. [更新日志](#更新日志)
+1. [Version Support](#version-support)
+1. [Version log](#version-log)
 1. [Start](#start)
-   1. [初始化项目](#initial) 
-   1. [注意事项](#notice)
+   1. [initialization](#initialization) 
+   1. [notes](#notes)
       - [node_modules](#node_modules)
-   1. [Android debug and publish](#android-debug-and-publish)
-      - [Android 可能遇到的问题](#android-可能遇到的问题)
-   1. [IOS debug and publish](#ios-debug-and-publish)
-      - [IOS 可能遇到的问题](#ios-可能遇到的问题)
-1. [目录结构](#目录结构)
+   1. [Android debug and release](#android-debug-and-release)
+      - [Android potential issues](#android-potential-issues)
+   1. [iOS debug and release](#ios-debug-and-release)
+      - [iOS potential issues](#ios-potential-issues)
+1. [Content structure](#content-structure)
 1. [Redux State](#redux-state)
 1. [Todo](#todo)
 1. [SDK integration](#sdk)
@@ -51,36 +51,32 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 > Need to run the following steps for new items, you can skip it if directory is updated
 
 1. **Initialization `$ npm run newclear`. Only need to run once for iOS and Android**
-2. **去工程Librares中找到： RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> 去掉特殊字符 / . 等**
-   - 因为上传文件时服务端rest服务会限制content-type不能出现特殊字符
+2. **Go to librares and find: 1RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary1 -> remove special characters / . **
+   - due to the constrain of uploading file REST server, cannot has special character for content-type
    
 ```
 // after modification: 
 const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 ```
 
-Note: 原先axios模块的修改步骤已取消，防止模块更新时重置，将axios迁移到了项目中维护
+### Notes
 
-### Notice
+> Please notice the following items after initialization
 
-> 项目初始化之后，编译时注意事项
-
-1. **默认没有添加签名的情况下请编译debug版本，不然release版本会无法正常运行**
-  - IOS安装流程中，如何修改release->debug, 有两处位置
-  - Android中，不要带release参数
-2. **目前代码版本0.2.0，请看项目目录下package.json -> version属性，如果不是请更新代码**
-3. **0.2.0版本部分依赖的模块升级请先运行`npm install`安装升级包**
-4. **install之后清理缓存**
+1. **Compile debug version of the app if no signature in place, release version require signature to run**
+2. **0.2.0 version. Please see package.json -> version property for updated version**
+3. **0.2.0 version rely on updated module, please run `npm install` first**
+4. **Clean the buffer after installation**
   - `npm run clean`
-  - 打开xcode项目，选择product -> clean
-  - 如果之前有编译时自动打开的终端，请关闭终端
-5. 编译
+  - Open Xcode: select product -> clean
+  - Please close the terminal if open there's one currently open
+5. Compile
 
 #### node_modules 
 
 > run ` npm run newclear` under root directory, this will generate node_modules, which are dependencies to run the app
 
-### Android debug and publish
+### Android debug and release
 
 1. Basic installation environment iOS 和 Android https://facebook.github.io/react-native/docs/getting-started.html
 	- `$ brew install android-sdk`
@@ -164,7 +160,7 @@ A: Try remove the installed app first, the reinstall
 ##### Q: Object.freeze can only be called on Object 
 A: `ctrl+m` to open controller, the select `Debug JS Remotely`
 
-### iOS debug and publish
+### iOS debug and release
 
 1. Basic installation environment iOS and Android https://facebook.github.io/react-native/docs/getting-started.html
 2. iOS simulator installation
