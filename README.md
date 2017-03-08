@@ -55,6 +55,7 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
    - due to the constrain of uploading file REST server, cannot have special character for content-type
 
 Note: 
+
 1. get the latest vesion of npm `npm install npm@latest -g`
 2. install linter `npm install -f linter`
 
