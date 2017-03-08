@@ -51,9 +51,10 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 > Need to run the following steps for new items, you can skip it if directory is updated
 
 1. **Initialization `$ npm run newclear`. Only need to run once for iOS and Android**
-2. **Go to librares and find: 1RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary1 -> remove special characters / . **
+2. **Go to librares and find: `1RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary1` -> remove special characters / . **
    - due to the constrain of uploading file REST server, cannot has special character for content-type
-   
+3. run `npm install -f linter`
+
 ```
 // after modification: 
 const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
