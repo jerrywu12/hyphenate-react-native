@@ -38,7 +38,7 @@ Note:
 1. React native library is updated for this version, please run `npm install` to install dependencies
 2. Go to librares and find `RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> remove character `/ .` 
    - or modify `node_modules/react-native/Libraries/Network/RCTNetworking.mm`
-   - due to the constrain of uploading file REST server, cannot has special character for content-type
+   - due to the constrain of uploading file REST server, cannot have special character for content-type
 ```
 // after modification： 
 const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -52,8 +52,11 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 
 1. **Initialization `$ npm run newclear`. Only need to run once for iOS and Android**
 2. **Go to librares and find: `1RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary1` -> remove special characters / . **
-   - due to the constrain of uploading file REST server, cannot has special character for content-type
-3. run `npm install -f linter`
+   - due to the constrain of uploading file REST server, cannot have special character for content-type
+
+Note: 
+1. get the latest vesion of npm `npm install npm@latest -g`
+2. install linter `npm install -f linter`
 
 ```
 // after modification: 
