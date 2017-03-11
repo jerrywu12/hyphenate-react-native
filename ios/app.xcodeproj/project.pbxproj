@@ -1057,7 +1057,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.react.native;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyphenate.demo.react.native;
 				PRODUCT_NAME = app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1091,7 +1091,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.react.native;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyphenate.demo.react.native;
 				PRODUCT_NAME = app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

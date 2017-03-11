@@ -49,7 +49,8 @@
     "redux-saga": "^0.11.1",
     "redux-thunk": "^2.1.0",
     "reduxsauce": "0.2.0",
-    "seamless-immutable": "^6.1.0"
+    "seamless-immutable": "^6.1.0",
+    "linter":"^0.0.7"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -103,7 +104,7 @@
     }
   },
   "main": "index.js",
-  "repository": "https://github.com/easemob/webim-react-native.git",
-  "author": "wytheme <liu48566203@gmail.com>",
+  "repository": "https://github.com/hyphenateinc/hyphenate-react-native.git",
+  "author": "Hyphenate <info@hyphenate.io>",
   "license": "MIT"
 }
