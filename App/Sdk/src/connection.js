@@ -53,7 +53,7 @@ window.Strophe.Websocket.prototype._closeSocket = function () {
  * Strophe.Websocket has a bug while logout:
  * 1.send: <presence xmlns='jabber:client' type='unavailable'/> is ok;
  * 2.send: <close xmlns='urn:ietf:params:xml:ns:xmpp-framing'/> will cause a problem,log as follows:
- * WebSocket connection to 'ws://im-api.easemob.com/ws/' failed: Data frame received after close_connect @ strophe.js:5292connect @ strophe.js:2491_login @ websdk-1.1.2.js:278suc @ websdk-1.1.2.js:636xhr.onreadystatechange @ websdk-1.1.2.js:2582
+ * WebSocket connection to 'ws://im-api.hyphenate.io/ws/' failed: Data frame received after close_connect @ strophe.js:5292connect @ strophe.js:2491_login @ websdk-1.1.2.js:278suc @ websdk-1.1.2.js:636xhr.onreadystatechange @ websdk-1.1.2.js:2582
  * 3 "Websocket error [object Event]"
  * _changeConnectStatus
  * onError Object {type: 7, msg: "The WebSocket connection could not be established or was disconnected.", reconnect: true}
@@ -998,7 +998,7 @@ connection.prototype.handlePresence = function (msginfo) {
     }
   }
 
-  // <item affiliation="member" jid="easemob-demo#chatdemoui_lwz2@easemob.com" role="none">
+  // <item affiliation="member" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io" role="none">
   //     <actor nick="liuwz"/>
   // </item>
   // one record once a time
@@ -1024,9 +1024,9 @@ connection.prototype.handlePresence = function (msginfo) {
   }
 
   // from message : apply to join group
-  // <message from="easemob-demo#chatdemoui_lwz4@easemob.com/mobile" id="259151681747419640" to="easemob-demo#chatdemoui_liuwz@easemob.com" xmlns="jabber:client">
+  // <message from="hyphenatedemo#chatdemoui_lwz4@hyphenate.io/mobile" id="259151681747419640" to="hyphenatedemo#chatdemoui_liuwz@hyphenate.io" xmlns="jabber:client">
   //     <x xmlns="http://jabber.org/protocol/muc#user">
-  //         <apply from="easemob-demo#chatdemoui_lwz4@easemob.com" to="easemob-demo#chatdemoui_1477733677560@conference.easemob.com" toNick="lwzlwzlwz">
+  //         <apply from="hyphenatedemo#chatdemoui_lwz4@hyphenate.io" to="hyphenatedemo#chatdemoui_1477733677560@conference.hyphenate.io" toNick="lwzlwzlwz">
   //             <reason>qwe</reason>
   //         </apply>
   //     </x>
@@ -2316,7 +2316,7 @@ connection.prototype.removeGroupMemberFromBlacklist = function (options) {
  *
  * @param options
  */
-// <iq to='easemob-demo#chatdemoui_roomid@conference.easemob.com' type='set' id='3940489311' xmlns='jabber:client'>
+// <iq to='hyphenatedemo#chatdemoui_roomid@conference.hyphenate.io' type='set' id='3940489311' xmlns='jabber:client'>
 //     <query xmlns='http://jabber.org/protocol/muc#owner'>
 //         <x type='submit' xmlns='jabber:x:data'>
 //             <field var='FORM_TYPE'><value>http://jabber.org/protocol/muc#roomconfig</value></field>
@@ -2359,7 +2359,7 @@ connection.prototype.changeGroupSubject = function (options) {
  *
  * @param options
  */
-// <iq id="9BEF5D20-841A-4048-B33A-F3F871120E58" to="easemob-demo#chatdemoui_1477462231499@conference.easemob.com" type="set">
+// <iq id="9BEF5D20-841A-4048-B33A-F3F871120E58" to="hyphenatedemo#chatdemoui_1477462231499@conference.hyphenate.io" type="set">
 //     <query xmlns="http://jabber.org/protocol/muc#owner">
 //         <destroy/>
 //     </query>
@@ -2388,9 +2388,9 @@ connection.prototype.destroyGroup = function (options) {
  *
  * @param options
  */
-// <iq id="5CD33172-7B62-41B7-98BC-CE6EF840C4F6_easemob_occupants_change_affiliation" to="easemob-demo#chatdemoui_1477481609392@conference.easemob.com" type="set">
+// <iq id="5CD33172-7B62-41B7-98BC-CE6EF840C4F6_easemob_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477481609392@conference.hyphenate.io" type="set">
 //     <query xmlns="http://jabber.org/protocol/muc#admin">
-//         <item affiliation="none" jid="easemob-demo#chatdemoui_lwz2@easemob.com"/>
+//         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
 //     </query>
 // </iq>
 connection.prototype.leaveGroupBySelf = function (options) {
@@ -2421,12 +2421,12 @@ connection.prototype.leaveGroupBySelf = function (options) {
  *
  * @param options
  */
-// <iq id="9fb25cf4-1183-43c9-961e-9df70e300de4:sendIQ" to="easemob-demo#chatdemoui_1477481597120@conference.easemob.com" type="set" xmlns="jabber:client">
+// <iq id="9fb25cf4-1183-43c9-961e-9df70e300de4:sendIQ" to="hyphenatedemo#chatdemoui_1477481597120@conference.hyphenate.io" type="set" xmlns="jabber:client">
 //     <query xmlns="http://jabber.org/protocol/muc#admin">
-//         <item affiliation="none" jid="easemob-demo#chatdemoui_lwz4@easemob.com"/>
-//         <item jid="easemob-demo#chatdemoui_lwz4@easemob.com" role="none"/>
-//         <item affiliation="none" jid="easemob-demo#chatdemoui_lwz2@easemob.com"/>
-//         <item jid="easemob-demo#chatdemoui_lwz2@easemob.com" role="none"/>
+//         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz4@hyphenate.io"/>
+//         <item jid="hyphenatedemo#chatdemoui_lwz4@hyphenate.io" role="none"/>
+//         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
+//         <item jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io" role="none"/>
 //     </query>
 // </iq>
 connection.prototype.leaveGroup = function (options) {
@@ -2465,9 +2465,9 @@ connection.prototype.leaveGroup = function (options) {
  *
  * @param options
  */
-// <iq id="09DFB1E5-C939-4C43-B5A7-8000DA0E3B73_easemob_occupants_change_affiliation" to="easemob-demo#chatdemoui_1477482739698@conference.easemob.com" type="set">
+// <iq id="09DFB1E5-C939-4C43-B5A7-8000DA0E3B73_easemob_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477482739698@conference.hyphenate.io" type="set">
 //     <query xmlns="http://jabber.org/protocol/muc#admin">
-//         <item affiliation="member" jid="easemob-demo#chatdemoui_lwz2@easemob.com"/>
+//         <item affiliation="member" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
 //     </query>
 // </iq>
 connection.prototype.addGroupMembers = function (options) {
