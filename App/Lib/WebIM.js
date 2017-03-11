@@ -24,9 +24,9 @@ let document = window.document = new DOMParser().parseFromString("<?xml version=
 if (WebIM.config.isDebug) {
   function ts() {
     var d = new Date()
-    var Hours = d.getHours() // 获取当前小时数(0-23)
-    var Minutes = d.getMinutes() // 获取当前分钟数(0-59)
-    var Seconds = d.getSeconds() // 获取当前秒数(0-59)
+    var Hours = d.getHours()      // current hour (0-23)
+    var Minutes = d.getMinutes()  // current min (0-59)
+    var Seconds = d.getSeconds()  // current sec (0-59)
     return (Hours < 10 ? '0' + Hours : Hours) + ':' + (Minutes < 10 ? '0' + Minutes : Minutes) + ':' + (Seconds < 10 ? '0' + Seconds : Seconds) + ' '
   }
 
@@ -59,14 +59,14 @@ if (WebIM.config.autoSignIn) {
   WebIM.config.autoSignInPwd = '1'
 }
 
-// var stropheConn = new window.Strophe.Connection("ws://im-api.easemob.com/ws/", {
+// var stropheConn = new window.Strophe.Connection("ws://im-api.hyphenate.io/ws/", {
 //                 inactivity: 30,
 //                 maxRetries: 5,
 //                 pollingTime: 4500
 //             });
 //
 // stropheConn.connect(
-//   'easemob-demo#chatdemoui_liuwz@easemob.com',
+//   'easemob-demo#chatdemoui_liuwz@hyphenate.io',
 //   '$t$' + 'YWMtmbQEBKKIEeaGmMtXyg5n1wAAAVlkQvGO2WOJGlMCEJKM4VV9GCMnb_XLCXU',
 //   function() {
 //     console.log(arguments, 'ggogogo');
@@ -82,7 +82,7 @@ WebIM.conn = new WebIM.connection({
   autoReconnectInterval: WebIM.config.autoReconnectInterval
 })
 
-//https://a1.easemob.com/easemob-demo/chatdemoui/users
+//https://a1.hyphenate.io/easemob-demo/chatdemoui/users
 let appKeyPair = WebIM.config.appkey.split('#')
 export let api = Api.create(`${WebIM.config.apiURL}/${appKeyPair[0]}/${appKeyPair[1]}`)
 
