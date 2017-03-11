@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * git do not control webim.config.js
@@ -11,25 +11,22 @@
 // for react native
 let location = {
   protocol: 'https'
-}
+};
 
 let config = {
   /*
    * XMPP server
    */
-  xmppURL: 'im-api.easemob.com',
-  // xmppURL: '172.17.2.139:5280',
+  xmppURL: 'im-api.hyphenate.io',
   /*
    * Backend REST API URL
    */
-  // apiURL: (location.protocol === 'https:' ? 'https:' : 'http:') + '//a1.easemob.com',
-  // ios must be https!!! by lwz
-  apiURL: 'https://a1.easemob.com',
-  // apiURL: (location.protocol === 'https:' ? 'https:' : 'http:') + '//172.17.3.155:8080',
+  // ios must be https!!!
+  apiURL: 'https://a1.hyphenate.io',
   /*
    * Application AppKey
    */
-  appkey: 'easemob-demo#chatdemoui',
+  appkey: 'hyphenatedemo#hyphenatedemo',
   /*
    * Whether to use HTTPS
    * @parameter {Boolean} true or false
@@ -47,8 +44,8 @@ let config = {
    */
   isWindowSDK: false,
   /**
-   * isSandBox=true:  xmppURL: 'im-api.sandbox.easemob.com',  apiURL: '//a1.sdb.easemob.com',
-   * isSandBox=false: xmppURL: 'im-api.easemob.com',          apiURL: '//a1.easemob.com',
+   * isSandBox=true:  xmppURL: 'im-api.sandbox.hyphenate.io',  apiURL: '//a1.sdb.hyphenate.io',
+   * isSandBox=false: xmppURL: 'im-api.hyphenate.io',          apiURL: '//a1.hyphenate.io',
    * @parameter {Boolean} true or false
    */
   isSandBox: false,
@@ -63,7 +60,7 @@ let config = {
    */
   autoReconnectNumMax: 2,
   /**
-   * the interval secons between each atuo reconnectting.
+   * the interval time in seconds between each auto reconnection.
    * works only if autoReconnectMaxNum >= 2.
    */
   autoReconnectInterval: 2,
@@ -75,6 +72,6 @@ let config = {
    * Set to auto sign-in
    */
   isAutoLogin: true
-}
+};
 
 export default config
