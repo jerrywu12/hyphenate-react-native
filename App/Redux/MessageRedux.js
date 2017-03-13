@@ -188,7 +188,7 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 /**
- * 添加信息
+ * add message
  * @param state
  * @param message object `{data,error,errorCode,errorText,ext:{weichat:{originType:webim}},from,id,to,type}`
  * @param bodyType enum [txt]
@@ -198,11 +198,11 @@ export const addMessage = (state, {message, bodyType = 'txt'}) => {
   !message.status && (message = parseFromServer(message, bodyType))
   const {username = ''} = state.user || {}
   const {type, id, to, status} = message
-  // 消息来源：没有from默认即为当前用户发送
+  // info source: if the field from is empty, then assume message is sent by current user
   const from = message.from || username
-  // 当前用户：标识为自己发送
+  // current user: mark as send by self
   const bySelf = from == username
-  // 房间id：自己发送或者不是单聊的时候，是接收人的ID， 否则是发送人的ID
+  // group or chat room id: sent by self or not one-to-one chat, then it's receiver's ID or sender's ID
   const chatId = bySelf || type !== 'chat' ? to : from
   state = state.setIn(['byId', id], {
     ...message,
@@ -219,7 +219,7 @@ export const addMessage = (state, {message, bodyType = 'txt'}) => {
 }
 
 /**
- * updateMessageStatus 更新消息状态
+ * updateMessageStatus update message status
  * @param state
  * @param message object
  * @param status enum [sending, sent ,fail]

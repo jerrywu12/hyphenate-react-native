@@ -45,7 +45,7 @@ class BaseListView extends Component {
   // ------------ logic  ---------------
 
   updateList(props) {
-    //TODO: 比对prev和next，search的筛选
+    //TODO: compare prev and next, search sorting
     const {data = [], search} = props || this.props;
     this.setState({
       dataSource: this.state.ds.cloneWithRowsAndSections(data)
@@ -80,7 +80,7 @@ class BaseListView extends Component {
 
     this.setState({isRefreshing: true});
     handleRefresh();
-    // TODO: 刷新成功/刷新失败
+    // TODO: refresh succeed/failed
     setTimeout(() => {
       this.setState({isRefreshing: false})
     }, 1000)

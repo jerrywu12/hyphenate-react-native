@@ -19,7 +19,7 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/easemob/web-im"
+    "url": "git+https://github.com/HyphenateInc/Hyphenate-SDK-Web"
   },
   "devDependencies": {
     "gulp-rename": "^1.2.2",

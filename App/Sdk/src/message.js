@@ -43,7 +43,7 @@ Message.txt.prototype.set = function (opt) {
 }
 
 /*
- * cmd message
+ * command message
  */
 Message.cmd = function (id) {
   this.id = id
@@ -65,7 +65,7 @@ Message.cmd.prototype.set = function (opt) {
 }
 
 /*
- * loc message
+ * location message
  */
 Message.location = function (id) {
   this.id = id
@@ -85,7 +85,7 @@ Message.location.prototype.set = function (opt) {
 }
 
 /*
- * img message
+ * image message
  */
 Message.img = function (id) {
   this.id = id

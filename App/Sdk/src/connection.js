@@ -291,7 +291,7 @@ var _parseFriend = function (queryTag, conn, from) {
       })
       friend.groups = groups
       rouster.push(friend)
-      // B同意之后 -> B订阅A
+      // after B agreed -> B subscribes A
       if (conn && (subscription == 'from')) {
         conn.subscribe({
           toJid: jid
@@ -676,8 +676,8 @@ var connection = function (options) {
   this.autoReconnectNumTotal = 0
   this.autoReconnectInterval = options.autoReconnectInterval || 0
   this.context = {status: _code.STATUS_INIT}
-  // todo 接收的事件，放到数组里的时候，加上g.isInBackground字段。每帧执行一个事件的时候，如果g.isInBackground=true,就pass
-  this.sendQueue = new Queue()  // 接收到的事件队列
+  // TODO: message receiving event pushing to queue, add g.isInBackground. Skip handling the if g.isInBackground=true
+  this.sendQueue = new Queue()  // message received queue
   this.intervalId = null
 }
 
@@ -687,6 +687,7 @@ connection.prototype.handelSendQueue = function () {
     this.sendReceiptsMessage(options)
   }
 }
+
 connection.prototype.listen = function (options) {
   options.url && (this.url = _getXmppUrl(options.url, this.https))
   this.onOpened = options.onOpened || _utils.emptyfn
@@ -707,7 +708,8 @@ connection.prototype.listen = function (options) {
   this.onOffline = options.onOffline || _utils.emptyfn
   this.onOnline = options.onOnline || _utils.emptyfn
   this.onConfirmPop = options.onConfirmPop || _utils.emptyfn
-  // for WindowSDK
+
+  // for Windows SDK
   this.onUpdateMyGroupList = options.onUpdateMyGroupList || _utils.emptyfn
   this.onUpdateMyRoster = options.onUpdateMyRoster || _utils.emptyfn
   //
@@ -1049,7 +1051,6 @@ connection.prototype.handlePresence = function (msginfo) {
   }
 
   if (info.chatroom) {
-    // diff the
     info.presence_type = presence_type
     info.original_type = info.type
     var reflectUser = from.slice(from.lastIndexOf('/') + 1)
@@ -1058,9 +1059,9 @@ connection.prototype.handlePresence = function (msginfo) {
       if (info.type === '' && !info.code) {
         info.type = 'joinChatRoomSuccess'
       } else if (presence_type === 'unavailable' || info.type === 'unavailable') {
-        if (!info.status) { // logout successfully.
+        if (!info.status) { // leave chat room successfully.
           info.type = 'leaveChatRoom'
-        } else if (info.code == 110) { // logout or dismissied by admin.
+        } else if (info.code == 110) { // leave or dismissed by admin.
           info.type = 'leaveChatRoom'
         } else if (info.error && info.error.code == 406) { // The chat room is full.
           info.type = 'reachChatRoomCapacity'
@@ -2222,7 +2223,7 @@ connection.prototype._getGroupJid = function (to) {
   return appKey + '_' + to + '@conference.' + this.domain
 }
 
-// used for blacklist
+// add member to blacklist
 connection.prototype.addToGroupBlackList = function (options) {
   var sucFn = options.success || _utils.emptyfn
   var errFn = options.error || _utils.emptyfn
@@ -2265,7 +2266,7 @@ function _parseGroupBlacklist(iq) {
   return list
 }
 
-// used for blacklist
+// get group blacklist
 connection.prototype.getGroupBlacklist = function (options) {
   var sucFn = options.success || _utils.emptyfn
   var errFn = options.error || _utils.emptyfn
@@ -2288,7 +2289,7 @@ connection.prototype.getGroupBlacklist = function (options) {
   })
 }
 
-// used for blacklist
+// remove group member from blacklist
 connection.prototype.removeGroupMemberFromBlacklist = function (options) {
   var sucFn = options.success || _utils.emptyfn
   var errFn = options.error || _utils.emptyfn
@@ -2312,7 +2313,7 @@ connection.prototype.removeGroupMemberFromBlacklist = function (options) {
 }
 
 /**
- * changeGroupSubject 修改群名称
+ * changeGroupSubject change group subject
  *
  * @param options
  */
@@ -2355,7 +2356,7 @@ connection.prototype.changeGroupSubject = function (options) {
 }
 
 /**
- * destroyGroup 删除群组
+ * destroyGroup Destroy Group
  *
  * @param options
  */
@@ -2384,11 +2385,11 @@ connection.prototype.destroyGroup = function (options) {
 }
 
 /**
- * leaveGroupBySelf 主动离开群组
+ * leaveGroupBySelf leave group by self主动离开群组
  *
  * @param options
  */
-// <iq id="5CD33172-7B62-41B7-98BC-CE6EF840C4F6_easemob_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477481609392@conference.hyphenate.io" type="set">
+// <iq id="5CD33172-7B62-41B7-98BC-CE6EF840C4F6_hyphenate_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477481609392@conference.hyphenate.io" type="set">
 //     <query xmlns="http://jabber.org/protocol/muc#admin">
 //         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
 //     </query>
@@ -2417,7 +2418,7 @@ connection.prototype.leaveGroupBySelf = function (options) {
 }
 
 /**
- * leaveGroup 被踢出群组
+ * leaveGroup leave or removed by admin from group
  *
  * @param options
  */
@@ -2461,11 +2462,11 @@ connection.prototype.leaveGroup = function (options) {
 }
 
 /**
- * addGroupMembers 添加群组成员
+ * addGroupMembers add user to group
  *
  * @param options
  */
-// <iq id="09DFB1E5-C939-4C43-B5A7-8000DA0E3B73_easemob_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477482739698@conference.hyphenate.io" type="set">
+// <iq id="09DFB1E5-C939-4C43-B5A7-8000DA0E3B73_hyphenate_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477482739698@conference.hyphenate.io" type="set">
 //     <query xmlns="http://jabber.org/protocol/muc#admin">
 //         <item affiliation="member" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
 //     </query>
@@ -2499,7 +2500,7 @@ connection.prototype.addGroupMembers = function (options) {
 }
 
 /**
- * acceptInviteFromGroup 接受加入申请
+ * acceptInviteFromGroup accept group invitation
  *
  * @param options
  */
@@ -2512,9 +2513,9 @@ connection.prototype.acceptInviteFromGroup = function (options) {
 }
 
 /**
- * rejectInviteFromGroup 拒绝加入申请
+ * rejectInviteFromGroup decline group invitation
  *
- * throw request for now 暂时不处理，直接丢弃
+ * ignore request for now
  *
  * @param options
  */
@@ -2522,13 +2523,13 @@ connection.prototype.rejectInviteFromGroup = function (options) {
 }
 
 /**
- * createGroup 创建群组
+ * createGroup create group
  *
- * 1. 创建申请 -> 得到房主身份
- * 2. 获取房主信息 -> 得到房间form
- * 3. 完善房间form -> 创建成功
- * 4. 添加房间成员
- * 5. 消息通知成员
+ * 1. create group request -> obtain group admin
+ * 2. obtain group admin info -> obtain group form
+ * 3. complete group form -> group created successfully
+ * 4. add user to group
+ * 5. notify group member
  * @param options
  */
 connection.prototype.createGroup = function (options) {

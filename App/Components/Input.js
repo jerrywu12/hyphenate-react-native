@@ -64,7 +64,7 @@ export default class Input extends React.Component {
 
     return (
       <TouchableWithoutFeedback onPress={this.handleSelectSearch.bind(this)}>
-        {/* 保证搜索按钮的左侧区域点击也会触发input的聚焦事件 */}
+        {/* trigger the input focus event when tapping left region of search button */}
         <View style={searchStyle}>
           <View style={searchIconStyle}>
             <Icon name={iconName} size={iconSize} color={iconColor}/>
