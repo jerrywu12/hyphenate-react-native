@@ -982,7 +982,7 @@
         })
           .c('query', {xmlns: 'jabber:iq:version'})
           .c('name')
-          .t('easemob')
+          .t('hyphenate')
           .up()
           .c('version')
           .t(_version)
@@ -1059,7 +1059,7 @@
           }
         }
 
-        // <item affiliation="member" jid="easemob-demo#chatdemoui_lwz2@hyphenate.io" role="none">
+        // <item affiliation="member" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io" role="none">
         //     <actor nick="liuwz"/>
         // </item>
         // one record once a time
@@ -1085,9 +1085,9 @@
         }
 
         // from message : apply to join group
-        // <message from="easemob-demo#chatdemoui_lwz4@hyphenate.io/mobile" id="259151681747419640" to="easemob-demo#chatdemoui_liuwz@hyphenate.io" xmlns="jabber:client">
+        // <message from="hyphenatedemo#chatdemoui_lwz4@hyphenate.io/mobile" id="259151681747419640" to="hyphenatedemo#chatdemoui_liuwz@hyphenate.io" xmlns="jabber:client">
         //     <x xmlns="http://jabber.org/protocol/muc#user">
-        //         <apply from="easemob-demo#chatdemoui_lwz4@hyphenate.io" to="easemob-demo#chatdemoui_1477733677560@conference.hyphenate.io" toNick="lwzlwzlwz">
+        //         <apply from="hyphenatedemo#chatdemoui_lwz4@hyphenate.io" to="hyphenatedemo#chatdemoui_1477733677560@conference.hyphenate.io" toNick="lwzlwzlwz">
         //             <reason>qwe</reason>
         //         </apply>
         //     </x>
@@ -2026,7 +2026,7 @@
           .c('x', {xmlns: Strophe.NS.MUC + '#user'})
           .c('item', {affiliation: 'member', role: 'participant'})
           .up().up()
-          .c('roomtype', {xmlns: 'easemob:x:roomtype', type: 'chatroom'})
+          .c('roomtype', {xmlns: 'hyphenate:x:roomtype', type: 'chatroom'})
 
         this.context.stropheConn.sendIQ(iq.tree(), suc, errorFn)
       }
@@ -2050,7 +2050,7 @@
           .c('x', {xmlns: Strophe.NS.MUC + '#user'})
           .c('item', {affiliation: 'none', role: 'none'})
           .up().up()
-          .c('roomtype', {xmlns: 'easemob:x:roomtype', type: 'chatroom'})
+          .c('roomtype', {xmlns: 'hyphenate:x:roomtype', type: 'chatroom'})
 
         this.context.stropheConn.sendIQ(iq.tree(), suc, errorFn)
       }
@@ -2377,7 +2377,7 @@
        *
        * @param options
        */
-      // <iq to='easemob-demo#chatdemoui_roomid@conference.hyphenate.io' type='set' id='3940489311' xmlns='jabber:client'>
+      // <iq to='hyphenatedemo#chatdemoui_roomid@conference.hyphenate.io' type='set' id='3940489311' xmlns='jabber:client'>
       //     <query xmlns='http://jabber.org/protocol/muc#owner'>
       //         <x type='submit' xmlns='jabber:x:data'>
       //             <field var='FORM_TYPE'><value>http://jabber.org/protocol/muc#roomconfig</value></field>
@@ -2420,7 +2420,7 @@
        *
        * @param options
        */
-      // <iq id="9BEF5D20-841A-4048-B33A-F3F871120E58" to="easemob-demo#chatdemoui_1477462231499@conference.hyphenate.io" type="set">
+      // <iq id="9BEF5D20-841A-4048-B33A-F3F871120E58" to="hyphenatedemo#chatdemoui_1477462231499@conference.hyphenate.io" type="set">
       //     <query xmlns="http://jabber.org/protocol/muc#owner">
       //         <destroy/>
       //     </query>
@@ -2449,9 +2449,9 @@
        *
        * @param options
        */
-      // <iq id="5CD33172-7B62-41B7-98BC-CE6EF840C4F6_easemob_occupants_change_affiliation" to="easemob-demo#chatdemoui_1477481609392@conference.hyphenate.io" type="set">
+      // <iq id="5CD33172-7B62-41B7-98BC-CE6EF840C4F6_hyphenate_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477481609392@conference.hyphenate.io" type="set">
       //     <query xmlns="http://jabber.org/protocol/muc#admin">
-      //         <item affiliation="none" jid="easemob-demo#chatdemoui_lwz2@hyphenate.io"/>
+      //         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
       //     </query>
       // </iq>
       connection.prototype.leaveGroupBySelf = function (options) {
@@ -2482,12 +2482,12 @@
        *
        * @param options
        */
-      // <iq id="9fb25cf4-1183-43c9-961e-9df70e300de4:sendIQ" to="easemob-demo#chatdemoui_1477481597120@conference.hyphenate.io" type="set" xmlns="jabber:client">
+      // <iq id="9fb25cf4-1183-43c9-961e-9df70e300de4:sendIQ" to="hyphenatedemo#chatdemoui_1477481597120@conference.hyphenate.io" type="set" xmlns="jabber:client">
       //     <query xmlns="http://jabber.org/protocol/muc#admin">
-      //         <item affiliation="none" jid="easemob-demo#chatdemoui_lwz4@hyphenate.io"/>
-      //         <item jid="easemob-demo#chatdemoui_lwz4@hyphenate.io" role="none"/>
-      //         <item affiliation="none" jid="easemob-demo#chatdemoui_lwz2@hyphenate.io"/>
-      //         <item jid="easemob-demo#chatdemoui_lwz2@hyphenate.io" role="none"/>
+      //         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz4@hyphenate.io"/>
+      //         <item jid="hyphenatedemo#chatdemoui_lwz4@hyphenate.io" role="none"/>
+      //         <item affiliation="none" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
+      //         <item jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io" role="none"/>
       //     </query>
       // </iq>
       connection.prototype.leaveGroup = function (options) {
@@ -2526,9 +2526,9 @@
        *
        * @param options
        */
-      // <iq id="09DFB1E5-C939-4C43-B5A7-8000DA0E3B73_easemob_occupants_change_affiliation" to="easemob-demo#chatdemoui_1477482739698@conference.hyphenate.io" type="set">
+      // <iq id="09DFB1E5-C939-4C43-B5A7-8000DA0E3B73_hyphenate_occupants_change_affiliation" to="hyphenatedemo#chatdemoui_1477482739698@conference.hyphenate.io" type="set">
       //     <query xmlns="http://jabber.org/protocol/muc#admin">
-      //         <item affiliation="member" jid="easemob-demo#chatdemoui_lwz2@hyphenate.io"/>
+      //         <item affiliation="member" jid="hyphenatedemo#chatdemoui_lwz2@hyphenate.io"/>
       //     </query>
       // </iq>
       connection.prototype.addGroupMembers = function (options) {
@@ -9652,7 +9652,7 @@
             }).c('body').t(jsonstr)
 
             if (message.roomType) {
-              dom.up().c('roomtype', {xmlns: 'easemob:x:roomtype', type: 'chatroom'})
+              dom.up().c('roomtype', {xmlns: 'hyphenate:x:roomtype', type: 'chatroom'})
             }
 
             setTimeout(function () {

@@ -66,7 +66,7 @@ if (WebIM.config.autoSignIn) {
 //             });
 //
 // stropheConn.connect(
-//   'easemob-demo#chatdemoui_liuwz@hyphenate.io',
+//   'hyphenatedemo#chatdemoui_liuwz@hyphenate.io',
 //   '$t$' + 'YWMtmbQEBKKIEeaGmMtXyg5n1wAAAVlkQvGO2WOJGlMCEJKM4VV9GCMnb_XLCXU',
 //   function() {
 //     console.log(arguments, 'ggogogo');
@@ -82,7 +82,7 @@ WebIM.conn = new WebIM.connection({
   autoReconnectInterval: WebIM.config.autoReconnectInterval
 })
 
-//https://a1.hyphenate.io/easemob-demo/chatdemoui/users
+//https://a1.hyphenate.io/hyphenatedemo/chatdemoui/users
 let appKeyPair = WebIM.config.appkey.split('#')
 export let api = Api.create(`${WebIM.config.apiURL}/${appKeyPair[0]}/${appKeyPair[1]}`)
 

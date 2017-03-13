@@ -228,7 +228,7 @@ _Message.prototype.send = function (conn) {
     }).c('body').t(jsonstr)
 
     if (message.roomType) {
-      dom.up().c('roomtype', {xmlns: 'easemob:x:roomtype', type: 'chatroom'})
+      dom.up().c('roomtype', {xmlns: 'hyphenate:x:roomtype', type: 'chatroom'})
     }
 
     setTimeout(function () {

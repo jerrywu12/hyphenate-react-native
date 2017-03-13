@@ -923,7 +923,7 @@ connection.prototype.notifyVersion = function (suc, fail) {
   })
     .c('query', {xmlns: 'jabber:iq:version'})
     .c('name')
-    .t('easemob')
+    .t('hyphenate')
     .up()
     .c('version')
     .t(_version)
@@ -1966,7 +1966,7 @@ connection.prototype.joinChatRoom = function (options) {
     .c('x', {xmlns: Strophe.NS.MUC + '#user'})
     .c('item', {affiliation: 'member', role: 'participant'})
     .up().up()
-    .c('roomtype', {xmlns: 'easemob:x:roomtype', type: 'chatroom'})
+    .c('roomtype', {xmlns: 'hyphenate:x:roomtype', type: 'chatroom'})
 
   this.context.stropheConn.sendIQ(iq.tree(), suc, errorFn)
 }
@@ -1990,7 +1990,7 @@ connection.prototype.quitChatRoom = function (options) {
     .c('x', {xmlns: Strophe.NS.MUC + '#user'})
     .c('item', {affiliation: 'none', role: 'none'})
     .up().up()
-    .c('roomtype', {xmlns: 'easemob:x:roomtype', type: 'chatroom'})
+    .c('roomtype', {xmlns: 'hyphenate:x:roomtype', type: 'chatroom'})
 
   this.context.stropheConn.sendIQ(iq.tree(), suc, errorFn)
 }
