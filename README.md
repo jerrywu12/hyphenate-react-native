@@ -25,25 +25,16 @@ Android >= 4.1 (API 16)
 Note: Development and testing environment is base on Mac.
 
 
+
 ## Version log
 
 Current version **v0.2.0 @ 2017-01-03**
 
-
 **[CHANGE LOG](./CHANGELOG.md)**
 
-Note:
-1. React native library is updated for this version, please run `npm install` to install dependencies
-2. Go to librares and find `RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> remove character `/ . 
-   - or modify `node_modules/react-native/Libraries/Network/RCTNetworking.mm`
-   - due to the constrain of uploading file REST server, cannot have special character for content-type
-```
-// after modification： 
-const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-```
 
 
-## Start
+## Get Started
 
 ### Initialization
 > Need to run the following steps for new items, you can skip it if directory is updated
@@ -51,20 +42,22 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 1. **Initialization `$ npm run newclear`. Only need to run once for iOS and Android**
 2. **Go to librares and find: `1RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary1` -> remove special characters / . **
    - due to the constrain of uploading file REST server, cannot have special character for content-type
+3. Run `npm install` to install dependencies and ensure React native is up to date.
 
-Note: 
+**Note:**
 
-1. get the latest vesion of npm `npm install npm@latest -g`
-2. install yarn by running command `npm install -g yarnpkg@0.15.1`
+1. Install the latest vesion of npm with command `npm install npm@latest -g`
+2. Install yarn by running command `npm install -g yarnpkg@0.15.1`
 
-```
-// after modification: 
-const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-```
+#### node_modules error
+Run `npm run newclear` under root directory, this will generate node_modules, which are dependencies to run the app
 
-### Notes
 
-> Please notice the following items after initialization
+- Go to librares and find `RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> remove character`/ . 
+   - or modify `node_modules/react-native/Libraries/Network/RCTNetworking.mm`
+   - due to the constrain of uploading file REST server, cannot have special character for content-type
+
+### Compile and Run
 
 1. **Compile debug version of the app if no signature in place, release version require signature to run**
 2. **0.2.0 version. Please see package.json -> version property for updated version**
@@ -75,11 +68,8 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
   - Please close the terminal if open there's one currently open
 5. Compile
 
-#### node_modules 
 
-> run `npm run newclear` under root directory, this will generate node_modules, which are dependencies to run the app
-
-### Android debug and release
+### Android 
 
 1. Basic installation environment iOS and Android https://facebook.github.io/react-native/docs/getting-started.html
 	- `$ brew install android-sdk`
@@ -103,6 +93,7 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 			- Google APIS Intel x86 Atom System Image
 	- Recommend use `Android studio` for image management and operation (or use `$ android avd ` )
 		- Open any item -> Tools -> Android -> AVD Manager / SDK Manager
+
 3. Emulator testing
 	- run any Image
 		- `emulator -avd <avd name>`
@@ -119,6 +110,7 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 	- Please follow the steps above to sign the app
 	- `build.gradle` located in android/app directory
 	- compile to `$ cd android && ./gradlew assembleRelease`
+
 5. 4 different methods to install to device
 	- `$ react-native run-android  --variant=release`
 	- `$ npm run android:install`
@@ -131,7 +123,7 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 	- `$ npm run android:logcat`
 	- Check the log for abnormal app termination. Device must be under the same network as computer.
 
-Common commands
+####Commands
 
 ```bash
 $ npm start
@@ -150,7 +142,7 @@ $ cd android/app/build/outpus/apk && adb install app-release.apk
 
 **Note: see shortcuts in root directory `package.json` scripts content**
 
-#### Android potential issues
+#### Android issues
 
 ##### Q: Emulator is running intially for the first time, but failed later on
 A: Remove image file, rebuild it, then run it again
@@ -163,15 +155,19 @@ A: Try remove the installed app first, the reinstall
 ##### Q: Object.freeze can only be called on Object 
 A: `ctrl+m` to open controller, the select `Debug JS Remotely`
 
-### iOS debug and release
+
+### iOS 
 
 1. Basic installation environment iOS and Android https://facebook.github.io/react-native/docs/getting-started.html
+
 2. iOS simulator installation
 	- Xcode -> Preferences-> Components -> iOS x.x Simulator
+
 3. Simulator testing
 	- `react-native run-ios --simulator "iPhone 7"`
 	- `cmd + d` to open controller
 	- `cmd + r` reload
+
 4. Physical device testing
 	- Xcode config
 		- Targets -> app -> General -> Signing -> add an iCloud account
@@ -228,17 +224,15 @@ A: https://github.com/facebook/react-native/issues/10638
 
 ##### Q: React Native BUILD SUCCEED, but “No devices are booted.”
 A: 
-
 - `react-native run-ios` do not use `sudo`, that will cause app compilation issue for simulator
 - compiling error `NSLocalizedDescription = "Permission denied";` if not using `sudo`
-  - `sudo chmod 777 /Users/用户名/.babel.json`
+  - `sudo chmod 777 /Users/username/.babel.json`
 - if still receiving `Permission denied` related problems
   - make sure the components and files are under the current user's directory not in root
   - `sudo chown -R user:user_group directory_name`
 
 ##### Q: Latest react-native app doesn't work ":CFBundleIdentifier", Does Not Exist #7308
 A: https://github.com/facebook/react-native/issues/7308
-
 ```
 Go to File -> Project settings
 Click the Advanced button
@@ -263,6 +257,7 @@ click done, done
 	- Navigation routing
 	- Redux actions / reducers
 	- Hyphenate web SDK
+
 
 ## Redux State
 
@@ -380,21 +375,21 @@ click done, done
 Demo example: Containers/App.js, listen to XMPP event（currently using redux, you can customize it depending on the framework and method of data processing)
 
 ```js
-    WebIM.conn.listen({
-      // xmpp connected successfully
-      onOpened: (msg) => {
-        // push message after presence
-        WebIM.conn.setPresence();
-        // get contacts
-        store.dispatch(RosterActions.getContacts())
-        // login successful
-        store.dispatch(LoginActions.loginSuccess(msg))
-        // get blacklist
-        store.dispatch(BlacklistActions.getBlacklist())
-        // get group list
-        store.dispatch(GroupActions.getGroups())
+WebIM.conn.listen({
+  // xmpp connected successfully
+  onOpened: (msg) => {
+    // push message after presence
+    WebIM.conn.setPresence();
+    // get contacts
+    store.dispatch(RosterActions.getContacts())
+    // login successful
+    store.dispatch(LoginActions.loginSuccess(msg))
+    // get blacklist
+    store.dispatch(BlacklistActions.getBlacklist())
+    // get group list
+    store.dispatch(GroupActions.getGroups())
 
-        NavigationActions.contacts()
-      },
-      ...
+    NavigationActions.contacts()
+  },
+  ...
 ```
