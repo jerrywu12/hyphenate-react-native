@@ -34,7 +34,7 @@ Current version **v0.2.0 @ 2017-01-03**
 
 Note:
 1. React native library is updated for this version, please run `npm install` to install dependencies
-2. Go to librares and find `RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> remove character `/ .` 
+2. Go to librares and find `RCTNetwork.xcodeproj / RCTNetworking.mm / RCTGenerateFormBoundary -> remove character `/ . 
    - or modify `node_modules/react-native/Libraries/Network/RCTNetworking.mm`
    - due to the constrain of uploading file REST server, cannot have special character for content-type
 ```
@@ -55,7 +55,7 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 Note: 
 
 1. get the latest vesion of npm `npm install npm@latest -g`
-2. install linter `npm install -f linter`
+2. install yarn by running command `npm install -g yarnpkg@0.15.1`
 
 ```
 // after modification: 
@@ -77,11 +77,11 @@ const char *boundaryChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY
 
 #### node_modules 
 
-> run ` npm run newclear` under root directory, this will generate node_modules, which are dependencies to run the app
+> run `npm run newclear` under root directory, this will generate node_modules, which are dependencies to run the app
 
 ### Android debug and release
 
-1. Basic installation environment iOS 和 Android https://facebook.github.io/react-native/docs/getting-started.html
+1. Basic installation environment iOS and Android https://facebook.github.io/react-native/docs/getting-started.html
 	- `$ brew install android-sdk`
 
 	```bash
